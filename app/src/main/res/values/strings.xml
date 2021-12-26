@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">MapleCal</string>
+    <string name="home">Home</string>
+    <string name="symbol">심볼</string>
+    <string name="park">몬스터파크</string>
+    <string name="hyper">하이퍼스텟</string>
+    <string name="train">심신수련관</string>
+    <string name="growth">성장의비약</string>
+    <string name="maplecal">메이플 계산기</string>
 </resources>

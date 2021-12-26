@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/symbol_item"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:icon="@drawable/symbol"
+        android:title="@string/symbol" />
+    <item
+        android:id="@+id/park_item"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:icon="@drawable/park"
+        android:title="@string/park" />
+    <item
+        android:id="@+id/hyper_item"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="@string/hyper" />
+    <item
+        android:id="@+id/train_item"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:icon="@drawable/train"
+        android:title="@string/train" />
+    <item
+        android:id="@+id/growth_item"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:icon="@drawable/growth"
+        android:title="@string/growth" />
+</menu>
