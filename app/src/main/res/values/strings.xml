@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">MapleCal</string>
+    <string name="refresh">REFRESH</string>
+    <string name="search">SEARCH</string>
+    <string name="share">SHARE</string>
+    <string name="symbol">심볼</string>
+    <string name="park">몬스터파크</string>
+    <string name="hyper">하이퍼스텟</string>
+    <string name="train">심신수련관</string>
+    <string name="growth">성장의비약</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
