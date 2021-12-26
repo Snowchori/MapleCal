@@ -33,7 +33,6 @@
         android:background="?attr/colorPrimary"
         android:elevation="10dp"
         app:menu="@menu/navi_menu"
-        app:itemIconTint="@drawable/menu_selector_color"
         app:itemTextColor="@drawable/menu_selector_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

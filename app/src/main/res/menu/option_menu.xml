@@ -5,7 +5,7 @@
         android:id="@+id/menu_home"
         android:icon="@drawable/home"
         android:orderInCategory="0"
-        android:title="@string/share"
+        android:title="@string/home"
         app:showAsAction="ifRoom" />
 
 </menu>

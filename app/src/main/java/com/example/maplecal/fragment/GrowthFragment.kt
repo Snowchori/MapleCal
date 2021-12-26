@@ -39,6 +39,7 @@ class GrowthFragment : Fragment() {
     }
 
     companion object {
+        const val TAG = "GrowthFragment"
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.

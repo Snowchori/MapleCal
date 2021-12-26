@@ -39,6 +39,7 @@ class SymbolFragment : Fragment() {
     }
 
     companion object {
+        const val TAG = "SymbolFragment"
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
