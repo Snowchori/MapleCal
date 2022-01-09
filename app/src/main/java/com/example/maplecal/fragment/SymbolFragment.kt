@@ -1,61 +1,98 @@
 package com.example.maplecal.fragment
 
 import android.os.Bundle
+import android.os.Parcelable
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
+import android.widget.Toast
+import androidx.fragment.app.FragmentManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.maplecal.R
+import com.example.maplecal.SymbolData
+import com.example.maplecal.SymbolDialog
+import com.example.maplecal.SymbolRecyclerViewAdapter
+import com.example.maplecal.databinding.FragmentSymbolBinding
+import com.example.maplecal.model.symbols
+import com.google.android.material.internal.ParcelableSparseArray
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SymbolFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class SymbolFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+class SymbolFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
+    private lateinit var binding : FragmentSymbolBinding
+    private lateinit var adapter : SymbolRecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_symbol, container, false)
+    ): View {
+        binding = FragmentSymbolBinding.inflate(layoutInflater)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
+    }
+
+    private fun initView(){
+        initSymbolRecyclerView()
+        initSymbolCheckBox()
+        initButton()
+    }
+
+    private fun initSymbolRecyclerView(){
+        adapter = SymbolRecyclerViewAdapter()
+        binding.recyclerView.layoutManager = LinearLayoutManager(context)
+        binding.recyclerView.adapter = adapter
+    }
+
+    private fun initSymbolCheckBox(){
+        binding.symbolLongways.setOnCheckedChangeListener(this)
+        binding.symbolChuchu.setOnCheckedChangeListener(this)
+        binding.symbolLehlne.setOnCheckedChangeListener(this)
+        binding.symbolArcana.setOnCheckedChangeListener(this)
+        binding.symbolMoras.setOnCheckedChangeListener(this)
+        binding.symbolEspa.setOnCheckedChangeListener(this)
+        binding.symbolCernium.setOnCheckedChangeListener(this)
+        binding.symbolArx.setOnCheckedChangeListener(this)
+    }
+
+    override fun onCheckedChanged(checkBox: CompoundButton, isChecked: Boolean) {
+        val symbol = when(checkBox.id){
+            R.id.symbol_longways -> 0
+            R.id.symbol_chuchu -> 1
+            R.id.symbol_lehlne -> 2
+            R.id.symbol_arcana -> 3
+            R.id.symbol_moras -> 4
+            R.id.symbol_espa -> 5
+            R.id.symbol_cernium -> 6
+            R.id.symbol_arx -> 7
+            else -> return
+        }
+
+        when(isChecked) {
+            true -> adapter.addItem(symbol)
+            false -> adapter.removeItem(symbol)
+        }
+    }
+
+    fun initButton() {
+        binding.calButton.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putParcelableArrayList("symbol", ArrayList(adapter.datalist))
+            val dialog = SymbolDialog()
+            activity?.supportFragmentManager?.let { fragmentManager ->
+                dialog.show(fragmentManager, "Symbol Dialog")
+            }
+        }
     }
 
     companion object {
         const val TAG = "SymbolFragment"
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SymbolFragment.
-         */
-        // TODO: Rename and change types and number of parameters
+
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SymbolFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        fun newInstance() = SymbolFragment()
     }
 }

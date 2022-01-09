@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val symbolFragment by lazy { SymbolFragment() }
+    private val symbolFragment by lazy { SymbolFragment.newInstance() }
     private val parkFragment by lazy { ParkFragment() }
     private val hyperFragment by lazy { HyperFragment() }
     private val trainFragment by lazy { TrainFragment() }
@@ -69,5 +69,4 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.option_menu, menu)
         return true
     }
-
 }

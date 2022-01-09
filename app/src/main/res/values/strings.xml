@@ -7,4 +7,9 @@
     <string name="train">심신수련관</string>
     <string name="growth">성장의비약</string>
     <string name="maplecal">메이플 계산기</string>
+    <string name="calculate">계산하기</string>
+    <string name="nickname">닉네임</string>
+    <string name="search">검색</string>
+    <string name="level">레벨/개수</string>
+    <string name="mini_game">미니게임</string>
 </resources>
