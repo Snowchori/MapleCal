@@ -9,7 +9,7 @@ data class SymbolData(
     val symbolImg : Int,
     val symbolName : String,
     val symbolExtra : String,
-    var symbolLevel : Int,
-    var symbolCount : Int,
-    var symbolMini : Int
+    var symbolLevel : String,
+    var symbolCount : String,
+    var symbolMini : String
 ) : Parcelable

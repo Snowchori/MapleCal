@@ -1,6 +1,7 @@
 package com.example.maplecal
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,9 +17,9 @@ class SymbolDialog : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = SymbolDialogBinding.inflate(layoutInflater)
-        val bundle = arguments
-        val notice = bundle?.getParcelableArray("symbol")
-        binding.symbolText.text = notice.toString()
+        arguments?.let {
+            binding.symbolText.text = it.getParcelableArrayList<SymbolData>("symbol").toString()
+        }
         return binding.root
     }
 }

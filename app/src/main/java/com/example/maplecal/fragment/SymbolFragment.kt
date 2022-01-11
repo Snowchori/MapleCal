@@ -1,27 +1,24 @@
 package com.example.maplecal.fragment
 
 import android.os.Bundle
-import android.os.Parcelable
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
-import android.widget.Toast
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.maplecal.R
 import com.example.maplecal.SymbolData
 import com.example.maplecal.SymbolDialog
 import com.example.maplecal.SymbolRecyclerViewAdapter
 import com.example.maplecal.databinding.FragmentSymbolBinding
-import com.example.maplecal.model.symbols
-import com.google.android.material.internal.ParcelableSparseArray
+import com.example.maplecal.model.getSymbol
 
 class SymbolFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
     private lateinit var binding : FragmentSymbolBinding
     private lateinit var adapter : SymbolRecyclerViewAdapter
+    private lateinit var symbols : Array<SymbolData>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,17 +30,28 @@ class SymbolFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView()
+        initView(savedInstanceState)
     }
 
-    private fun initView(){
-        initSymbolRecyclerView()
+    private fun initView(savedInstanceState: Bundle?){
+        symbols = getSymbol()
+        initSymbolRecyclerView(savedInstanceState)
         initSymbolCheckBox()
         initButton()
     }
 
-    private fun initSymbolRecyclerView(){
+    private fun initSymbolRecyclerView(savedInstanceState: Bundle?){
         adapter = SymbolRecyclerViewAdapter()
+        if (savedInstanceState != null) {
+            val data = mutableListOf<SymbolData>()
+            val saveData = savedInstanceState.getParcelableArrayList<SymbolData>("symbolData")
+            if (saveData != null) {
+                for (i in 0 until saveData.size){
+                    data.add(saveData[i])
+                }
+            }
+            adapter.datalist = data
+        }
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.adapter = adapter
     }
@@ -73,20 +81,27 @@ class SymbolFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
         }
 
         when(isChecked) {
-            true -> adapter.addItem(symbol)
+            true -> adapter.addItem(symbols[symbol], symbol)
             false -> adapter.removeItem(symbol)
         }
     }
 
     fun initButton() {
         binding.calButton.setOnClickListener {
+            Log.e("eee", ArrayList(adapter.datalist).toString())
             val bundle = Bundle()
             bundle.putParcelableArrayList("symbol", ArrayList(adapter.datalist))
             val dialog = SymbolDialog()
-            activity?.supportFragmentManager?.let { fragmentManager ->
+            dialog.arguments = bundle
+            childFragmentManager.let { fragmentManager ->
                 dialog.show(fragmentManager, "Symbol Dialog")
             }
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelableArrayList("symbolData", ArrayList(adapter.datalist))
     }
 
     companion object {
