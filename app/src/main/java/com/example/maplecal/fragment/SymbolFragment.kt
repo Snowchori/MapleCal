@@ -88,10 +88,10 @@ class SymbolFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
 
     fun initButton() {
         binding.calButton.setOnClickListener {
-            Log.e("eee", ArrayList(adapter.datalist).toString())
             val bundle = Bundle()
             bundle.putParcelableArrayList("symbol", ArrayList(adapter.datalist))
             val dialog = SymbolDialog()
+            dialog.isCancelable = false
             dialog.arguments = bundle
             childFragmentManager.let { fragmentManager ->
                 dialog.show(fragmentManager, "Symbol Dialog")

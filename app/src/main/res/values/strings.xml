@@ -12,4 +12,9 @@
     <string name="search">검색</string>
     <string name="level">레벨/개수</string>
     <string name="mini_game">미니게임</string>
+    <string name="gain">20xx년 xx월 xx일</string>
+    <string name="meso">xxxxxxxxxx</string>
+    <string name="gain_day">획득 날짜</string>
+    <string name="request_meso">요구 메소</string>
+    <string name="previous">이전</string>
 </resources>
