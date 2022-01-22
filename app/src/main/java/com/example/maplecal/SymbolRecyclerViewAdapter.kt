@@ -9,7 +9,13 @@ import com.example.maplecal.databinding.ItemRecyclerSymbolBinding
 class SymbolRecyclerViewAdapter : RecyclerView.Adapter<SymbolRecyclerViewAdapter.MyViewHolder>() {
     var datalist = mutableListOf<SymbolData>()
 
-    class MyViewHolder(val binding: ItemRecyclerSymbolBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class MyViewHolder(val binding: ItemRecyclerSymbolBinding) : RecyclerView.ViewHolder(binding.root) {
+        init {
+            binding.levelEdit.addTextChangedListener { datalist[adapterPosition].symbolLevel = it.toString() }
+            binding.countEdit.addTextChangedListener { datalist[adapterPosition].symbolCount = it.toString() }
+            binding.extraEdit.addTextChangedListener { datalist[adapterPosition].symbolMini = it.toString() }
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = ItemRecyclerSymbolBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -23,10 +29,6 @@ class SymbolRecyclerViewAdapter : RecyclerView.Adapter<SymbolRecyclerViewAdapter
         holder.binding.levelEdit.setText(datalist[position].symbolLevel)
         holder.binding.countEdit.setText(datalist[position].symbolCount)
         holder.binding.extraEdit.setText(datalist[position].symbolMini)
-
-        holder.binding.levelEdit.addTextChangedListener { datalist[position].symbolLevel = it.toString() }
-        holder.binding.countEdit.addTextChangedListener { datalist[position].symbolCount = it.toString() }
-        holder.binding.extraEdit.addTextChangedListener { datalist[position].symbolMini = it.toString() }
     }
 
     override fun getItemCount(): Int = datalist.size

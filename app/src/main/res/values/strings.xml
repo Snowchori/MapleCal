@@ -17,4 +17,5 @@
     <string name="gain_day">획득 날짜</string>
     <string name="request_meso">요구 메소</string>
     <string name="previous">이전</string>
+    <string name="result">계산 결과</string>
 </resources>

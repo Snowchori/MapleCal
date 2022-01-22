@@ -8,10 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.maplecal.R
-import com.example.maplecal.SymbolData
-import com.example.maplecal.SymbolDialog
-import com.example.maplecal.SymbolRecyclerViewAdapter
+import com.example.maplecal.*
 import com.example.maplecal.databinding.FragmentSymbolBinding
 import com.example.maplecal.model.getSymbol
 
@@ -35,6 +32,10 @@ class SymbolFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
 
     private fun initView(savedInstanceState: Bundle?){
         symbols = getSymbol()
+        if (savedInstanceState != null) {
+            val nickname = savedInstanceState.getString("nickname")
+            if (nickname != null) binding.nickname.setText(nickname)
+        }
         initSymbolRecyclerView(savedInstanceState)
         initSymbolCheckBox()
         initButton()
@@ -93,15 +94,18 @@ class SymbolFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
             val dialog = SymbolDialog()
             dialog.isCancelable = false
             dialog.arguments = bundle
-            childFragmentManager.let { fragmentManager ->
-                dialog.show(fragmentManager, "Symbol Dialog")
-            }
+            dialog.show(childFragmentManager, "Symbol Dialog")
+        }
+
+        binding.searchButton.setOnClickListener {
+            val nickname = binding.nickname.text
         }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putParcelableArrayList("symbolData", ArrayList(adapter.datalist))
+        outState.putString("nickname", binding.nickname.text.toString())
     }
 
     companion object {

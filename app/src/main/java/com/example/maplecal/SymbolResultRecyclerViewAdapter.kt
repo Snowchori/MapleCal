@@ -24,20 +24,22 @@ class SymbolResultRecyclerViewAdapter : RecyclerView.Adapter<SymbolResultRecycle
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.binding.symbolImage.setImageResource(datalist[position].symbolImg)
         holder.binding.symbolName.text = datalist[position].symbolName
-        holder.binding.requestMeso.text = getMeso(datalist[position].symbolIndex, datalist[position].symbolLevel.toLong())
+        holder.binding.requestMeso.text = getMeso(datalist[position].symbolIndex, datalist[position].symbolLevel.toInt())
         holder.binding.symbolGain.text = getTime(datalist[position].symbolIndex, datalist[position].symbolLevel.toInt(),
             datalist[position].symbolCount.toInt(), datalist[position].symbolMini.toInt())
     }
 
     override fun getItemCount(): Int = datalist.size
 
-    fun getMeso(ind : Int, level : Long) : String {
+    fun getMeso(ind : Int, level : Int) : String {
         val dec = DecimalFormat("#,###")
         val meso = when (ind) {
-            0 -> getArcaneMesoLittle(level - 1, 19)
-            1, 2, 3, 4, 5 -> getArcaneMesoMuch(level - 1, 19)
-            6 -> getAuthenticMesoCernium(level - 1, 10)
-            7 -> getAuthenticMesoArx(level - 1, 10)
+            0 -> getArcaneMesoLongway(level, 20)
+            1 -> getArcaneMesoChuchu(level, 20)
+            2 -> getArcaneMesoMoras(level, 20)
+            3, 4, 5 -> getArcaneMesoEtc(level, 20)
+            6 -> getAuthenticMesoCernium(level, 11)
+            7 -> getAuthenticMesoArx(level, 11)
             else -> -1
         }
 
