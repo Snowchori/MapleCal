@@ -7,15 +7,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.maplecal.*
 import com.example.maplecal.databinding.FragmentSymbolBinding
 import com.example.maplecal.model.getSymbol
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import org.jsoup.Jsoup
+import java.lang.StringBuilder
+import java.net.URLEncoder
 
 class SymbolFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
     private lateinit var binding : FragmentSymbolBinding
     private lateinit var adapter : SymbolRecyclerViewAdapter
     private lateinit var symbols : Array<SymbolData>
+
+    private val baseUrl = "https://maplestory.nexon.com"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -95,10 +105,6 @@ class SymbolFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
             dialog.isCancelable = false
             dialog.arguments = bundle
             dialog.show(childFragmentManager, "Symbol Dialog")
-        }
-
-        binding.searchButton.setOnClickListener {
-            val nickname = binding.nickname.text
         }
     }
 
