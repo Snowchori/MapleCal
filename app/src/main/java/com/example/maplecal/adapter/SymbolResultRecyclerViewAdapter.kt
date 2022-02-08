@@ -1,9 +1,10 @@
-package com.example.maplecal
+package com.example.maplecal.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.maplecal.data.SymbolData
 import com.example.maplecal.databinding.ItemRecyclerSymbolResultBinding
 import com.example.maplecal.model.*
 import java.text.DateFormat
@@ -31,7 +32,7 @@ class SymbolResultRecyclerViewAdapter : RecyclerView.Adapter<SymbolResultRecycle
 
     override fun getItemCount(): Int = datalist.size
 
-    fun getMeso(ind : Int, level : Int) : String {
+    private fun getMeso(ind : Int, level : Int) : String {
         val dec = DecimalFormat("#,###")
         val meso = when (ind) {
             0 -> getArcaneMesoLongway(level, 20)
@@ -47,7 +48,7 @@ class SymbolResultRecyclerViewAdapter : RecyclerView.Adapter<SymbolResultRecycle
     }
 
     @SuppressLint("SimpleDateFormat")
-    fun getTime(ind : Int, level : Int, count : Int, mini : Int) : String {
+    private fun getTime(ind : Int, level : Int, count : Int, mini : Int) : String {
         var remain : Int = when(ind) {
             0, 1, 2, 3, 4 ,5 -> getArcaneGrowth(level - 1, 19)
             6, 7 -> getAuthenticGrowth(level - 1, 10)

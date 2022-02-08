@@ -1,12 +1,13 @@
-package com.example.maplecal
+package com.example.maplecal.dialog
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.maplecal.data.SymbolData
+import com.example.maplecal.adapter.SymbolResultRecyclerViewAdapter
 import com.example.maplecal.databinding.SymbolDialogBinding
 
 class SymbolDialog : DialogFragment() {
@@ -39,12 +40,10 @@ class SymbolDialog : DialogFragment() {
         adapter = SymbolResultRecyclerViewAdapter()
         arguments?.let {
             val data = mutableListOf<SymbolData>()
-            arguments?.let {
-                val saveData = it.getParcelableArrayList<SymbolData>("symbol")
-                if (saveData != null) {
-                    for (i in 0 until saveData.size) {
-                        data.add(saveData[i])
-                    }
+            val saveData = it.getParcelableArrayList<SymbolData>("symbol")
+            if (saveData != null) {
+                for (i in 0 until saveData.size) {
+                    data.add(saveData[i])
                 }
             }
             adapter.datalist = data

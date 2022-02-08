@@ -18,4 +18,15 @@
     <string name="request_meso">요구 메소</string>
     <string name="previous">이전</string>
     <string name="result">계산 결과</string>
+    <string name="clear">클리어 횟수</string>
+    <string name="point">메포사용 횟수</string>
+    <string name="mon">월</string>
+    <string name="tue">화</string>
+    <string name="wed">수</string>
+    <string name="thu">목</string>
+    <string name="fri">금</string>
+    <string name="sat">토</string>
+    <string name="sun">일</string>
+    <string name="request_point">요구 메포</string>
+    <string name="decoration">훈장</string>
 </resources>

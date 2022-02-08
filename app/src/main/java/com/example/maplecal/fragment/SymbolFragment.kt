@@ -1,24 +1,18 @@
 package com.example.maplecal.fragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.maplecal.*
+import com.example.maplecal.adapter.SymbolRecyclerViewAdapter
+import com.example.maplecal.data.SymbolData
 import com.example.maplecal.databinding.FragmentSymbolBinding
+import com.example.maplecal.dialog.SymbolDialog
 import com.example.maplecal.model.getSymbol
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import org.jsoup.Jsoup
-import java.lang.StringBuilder
-import java.net.URLEncoder
 
 class SymbolFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
     private lateinit var binding : FragmentSymbolBinding
