@@ -10,16 +10,24 @@ import com.example.maplecal.databinding.ItemRecyclerSymbolBinding
 class SymbolRecyclerViewAdapter : RecyclerView.Adapter<SymbolRecyclerViewAdapter.MyViewHolder>() {
     var datalist = mutableListOf<SymbolData>()
 
-    inner class MyViewHolder(val binding: ItemRecyclerSymbolBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MyViewHolder(val binding: ItemRecyclerSymbolBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         init {
-            binding.levelEdit.addTextChangedListener { datalist[adapterPosition].symbolLevel = it.toString() }
-            binding.countEdit.addTextChangedListener { datalist[adapterPosition].symbolCount = it.toString() }
-            binding.extraEdit.addTextChangedListener { datalist[adapterPosition].symbolMini = it.toString() }
+            binding.levelEdit.addTextChangedListener {
+                datalist[adapterPosition].symbolLevel = it.toString()
+            }
+            binding.countEdit.addTextChangedListener {
+                datalist[adapterPosition].symbolCount = it.toString()
+            }
+            binding.extraEdit.addTextChangedListener {
+                datalist[adapterPosition].symbolMini = it.toString()
+            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding = ItemRecyclerSymbolBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemRecyclerSymbolBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
     }
 
@@ -43,7 +51,7 @@ class SymbolRecyclerViewAdapter : RecyclerView.Adapter<SymbolRecyclerViewAdapter
         notifyDataSetChanged()
     }
 
-    fun removeItem(ind : Int) {
+    fun removeItem(ind: Int) {
         for (i in 0 until this.datalist.size) {
             if (this.datalist[i].symbolIndex == ind) {
                 this.datalist.removeAt(i)

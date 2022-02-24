@@ -15,9 +15,9 @@ import com.example.maplecal.dialog.SymbolDialog
 import com.example.maplecal.model.getSymbol
 
 class SymbolFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
-    private lateinit var binding : FragmentSymbolBinding
-    private lateinit var adapter : SymbolRecyclerViewAdapter
-    private lateinit var symbols : Array<SymbolData>
+    private lateinit var binding: FragmentSymbolBinding
+    private lateinit var adapter: SymbolRecyclerViewAdapter
+    private lateinit var symbols: Array<SymbolData>
 
     private val baseUrl = "https://maplestory.nexon.com"
 
@@ -34,7 +34,7 @@ class SymbolFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
         initView(savedInstanceState)
     }
 
-    private fun initView(savedInstanceState: Bundle?){
+    private fun initView(savedInstanceState: Bundle?) {
         symbols = getSymbol()
         if (savedInstanceState != null) {
             val nickname = savedInstanceState.getString("nickname")
@@ -45,13 +45,13 @@ class SymbolFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
         initButton()
     }
 
-    private fun initSymbolRecyclerView(savedInstanceState: Bundle?){
+    private fun initSymbolRecyclerView(savedInstanceState: Bundle?) {
         adapter = SymbolRecyclerViewAdapter()
         if (savedInstanceState != null) {
             val data = mutableListOf<SymbolData>()
             val saveData = savedInstanceState.getParcelableArrayList<SymbolData>("symbolData")
             if (saveData != null) {
-                for (i in 0 until saveData.size){
+                for (i in 0 until saveData.size) {
                     data.add(saveData[i])
                 }
             }
@@ -61,7 +61,7 @@ class SymbolFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
         binding.recyclerView.adapter = adapter
     }
 
-    private fun initSymbolCheckBox(){
+    private fun initSymbolCheckBox() {
         binding.symbolLongways.setOnCheckedChangeListener(this)
         binding.symbolChuchu.setOnCheckedChangeListener(this)
         binding.symbolLehlne.setOnCheckedChangeListener(this)
@@ -73,7 +73,7 @@ class SymbolFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
     }
 
     override fun onCheckedChanged(checkBox: CompoundButton, isChecked: Boolean) {
-        val symbol = when(checkBox.id){
+        val symbol = when (checkBox.id) {
             R.id.symbol_longways -> 0
             R.id.symbol_chuchu -> 1
             R.id.symbol_lehlne -> 2
@@ -85,7 +85,7 @@ class SymbolFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
             else -> return
         }
 
-        when(isChecked) {
+        when (isChecked) {
             true -> adapter.addItem(symbols[symbol], symbol)
             false -> adapter.removeItem(symbol)
         }

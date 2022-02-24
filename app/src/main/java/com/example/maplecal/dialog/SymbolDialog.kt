@@ -1,18 +1,23 @@
 package com.example.maplecal.dialog
 
+import android.content.Context
+import android.graphics.Point
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.maplecal.data.SymbolData
 import com.example.maplecal.adapter.SymbolResultRecyclerViewAdapter
 import com.example.maplecal.databinding.SymbolDialogBinding
+import com.example.maplecal.util.resize
 
 class SymbolDialog : DialogFragment() {
-    private lateinit var binding : SymbolDialogBinding
-    private lateinit var adapter : SymbolResultRecyclerViewAdapter
+    private lateinit var binding: SymbolDialogBinding
+    private lateinit var adapter: SymbolResultRecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,6 +29,11 @@ class SymbolDialog : DialogFragment() {
             it.getParcelableArrayList<SymbolData>("symbol").toString()
         }
         return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        resize(0.9f, 0.9f)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -9,10 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.maplecal.adapter.ParkResultRecyclerViewAdapter
 import com.example.maplecal.data.ParkData
 import com.example.maplecal.databinding.ParkDialogBinding
+import com.example.maplecal.util.resize
 
 class ParkDialog : DialogFragment() {
-    private lateinit var binding : ParkDialogBinding
-    private lateinit var adapter : ParkResultRecyclerViewAdapter
+    private lateinit var binding: ParkDialogBinding
+    private lateinit var adapter: ParkResultRecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,6 +30,11 @@ class ParkDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        resize(0.9f, 0.9f)
     }
 
     private fun initView() {

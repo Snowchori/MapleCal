@@ -11,15 +11,21 @@ import com.example.maplecal.databinding.ItemRecyclerParkBinding
 class ParkRecyclerViewAdapter : RecyclerView.Adapter<ParkRecyclerViewAdapter.MyViewHolder>() {
     var datalist = mutableListOf<ParkData>()
 
-    inner class MyViewHolder(val binding: ItemRecyclerParkBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MyViewHolder(val binding: ItemRecyclerParkBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         init {
-            binding.countEdit.addTextChangedListener { datalist[adapterPosition].parkCount = it.toString() }
-            binding.pointEdit.addTextChangedListener { datalist[adapterPosition].parkPoint = it.toString() }
+            binding.countEdit.addTextChangedListener {
+                datalist[adapterPosition].parkCount = it.toString()
+            }
+            binding.pointEdit.addTextChangedListener {
+                datalist[adapterPosition].parkPoint = it.toString()
+            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding = ItemRecyclerParkBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemRecyclerParkBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
     }
 

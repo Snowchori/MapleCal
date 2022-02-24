@@ -11,7 +11,7 @@ import com.example.maplecal.databinding.DialogLoadingBinding
 
 class LoadingDialog : DialogFragment() {
 
-    private lateinit var binding : DialogLoadingBinding
+    private lateinit var binding: DialogLoadingBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,

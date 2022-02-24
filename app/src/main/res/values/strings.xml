@@ -10,7 +10,7 @@
     <string name="calculate">계산하기</string>
     <string name="nickname">닉네임</string>
     <string name="search">검색</string>
-    <string name="level">레벨/개수</string>
+    <string name="level_count">레벨/개수</string>
     <string name="mini_game">미니게임</string>
     <string name="gain">20xx년 xx월 xx일</string>
     <string name="meso">xxxxxxxxxx</string>
@@ -29,4 +29,15 @@
     <string name="sun">일</string>
     <string name="request_point">요구 메포</string>
     <string name="decoration">훈장</string>
+    <string name="level">레벨</string>
+    <string name="remain_point">남은 포인트</string>
+    <string name="initialization">초기화</string>
+    <string name="exp_per">경험치 퍼센트 (%)</string>
+    <string name="time">시간</string>
+    <string name="extreme">익성비 141~199</string>
+    <string name="growth1">비약1 200~209</string>
+    <string name="growth2">비약2 200~219</string>
+    <string name="growth3">비약3 200~229</string>
+    <string name="typhoon">태성비 200~239</string>
+    <string name="limit">극성비 200~249</string>
 </resources>

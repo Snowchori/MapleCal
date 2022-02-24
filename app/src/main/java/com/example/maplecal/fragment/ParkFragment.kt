@@ -1,6 +1,7 @@
 package com.example.maplecal.fragment
 
 import android.os.Bundle
+import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,9 +16,9 @@ import com.example.maplecal.dialog.ParkDialog
 import com.example.maplecal.model.getPark
 
 class ParkFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
-    private lateinit var binding : FragmentParkBinding
-    private lateinit var adapter : ParkRecyclerViewAdapter
-    private lateinit var parks : Array<ParkData>
+    private lateinit var binding: FragmentParkBinding
+    private lateinit var adapter: ParkRecyclerViewAdapter
+    private lateinit var parks: Array<ParkData>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +33,7 @@ class ParkFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
         initView(savedInstanceState)
     }
 
-    private fun initView(savedInstanceState: Bundle?){
+    private fun initView(savedInstanceState: Bundle?) {
         parks = getPark()
         initParkRecyclerView(savedInstanceState)
         initParkCheckBox()
@@ -56,7 +57,6 @@ class ParkFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
     }
 
     private fun initParkCheckBox() {
-
         binding.parkSun.setOnCheckedChangeListener(this)
         binding.parkMon.setOnCheckedChangeListener(this)
         binding.parkTue.setOnCheckedChangeListener(this)
@@ -67,7 +67,7 @@ class ParkFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
     }
 
     override fun onCheckedChanged(checkbox: CompoundButton, isChecked: Boolean) {
-        val park = when(checkbox.id) {
+        val park = when (checkbox.id) {
             R.id.park_sun -> 0
             R.id.park_mon -> 1
             R.id.park_tue -> 2
@@ -78,7 +78,7 @@ class ParkFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
             else -> return
         }
 
-        when(isChecked) {
+        when (isChecked) {
             true -> adapter.addItem(parks[park], park)
             false -> adapter.removeItem(park)
         }

@@ -10,74 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/nickname"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:hint="@string/nickname"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/search_button"/>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/search_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/skyblue"
-            android:text="@string/search"
-            android:textColor="@color/black"
-            android:layout_marginTop="20dp"
-            app:layout_constraintStart_toEndOf="@id/nickname"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/level"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/level"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="@id/level_edit"
-            app:layout_constraintTop_toBottomOf="@id/nickname" />
-
-        <TextView
-            android:id="@+id/exp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/exp_per"
-            android:textSize="20sp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintStart_toStartOf="@id/exp_edit"
-            app:layout_constraintTop_toBottomOf="@id/nickname"/>
-
-        <EditText
-            android:id="@+id/level_edit"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@id/level"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/exp_edit"/>
-
-        <EditText
-            android:id="@+id/exp_edit"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            app:layout_constraintStart_toEndOf="@id/level_edit"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/exp"/>
-
         <ScrollView
             android:id="@+id/scrollView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="20dp"
             android:background="@color/white"
-            app:layout_constraintTop_toBottomOf="@id/exp_edit"
-            app:layout_constraintBottom_toTopOf="@id/result_edit"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/cal_button"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
@@ -86,13 +26,75 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp">
 
+                <EditText
+                    android:id="@+id/nickname"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:hint="@string/nickname"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/search_button"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/search_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/skyblue"
+                    android:text="@string/search"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintStart_toEndOf="@id/nickname"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/level"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/level_edit"
+                    app:layout_constraintTop_toBottomOf="@id/nickname" />
+
+                <TextView
+                    android:id="@+id/exp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/exp_per"
+                    android:textSize="20sp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintStart_toEndOf="@id/level_edit"
+                    app:layout_constraintEnd_toStartOf="@id/exp_edit"
+                    app:layout_constraintTop_toBottomOf="@id/nickname"/>
+
+                <EditText
+                    android:id="@+id/level_edit"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintTop_toBottomOf="@id/nickname"
+                    app:layout_constraintStart_toEndOf="@id/level"
+                    app:layout_constraintEnd_toStartOf="@id/exp"/>
+
+                <EditText
+                    android:id="@+id/exp_edit"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintStart_toEndOf="@id/exp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/nickname"/>
+
                 <TextView
                     android:id="@+id/extreme"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/extreme"
                     android:textSize="15sp"
-                    app:layout_constraintTop_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/level_edit"
                     app:layout_constraintBottom_toTopOf="@id/extreme_edit"
                     app:layout_constraintStart_toStartOf="@id/extreme_edit" />
 
@@ -103,7 +105,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/growth1_edit"
                     app:layout_constraintTop_toBottomOf="@id/extreme"
-                    app:layout_constraintBottom_toTopOf="@id/growth2"/>
+                    app:layout_constraintBottom_toTopOf="@id/growth3"/>
 
                 <TextView
                     android:id="@+id/growth1"
@@ -112,7 +114,7 @@
                     android:text="@string/growth1"
                     android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="@id/growth1_edit"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/exp_edit"
                     app:layout_constraintBottom_toTopOf="@id/growth1_edit" />
 
                 <EditText
@@ -121,8 +123,8 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintStart_toEndOf="@id/extreme_edit"
                     app:layout_constraintTop_toBottomOf="@id/growth1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/growth3"/>
+                    app:layout_constraintEnd_toStartOf="@id/growth2_edit"
+                    app:layout_constraintBottom_toTopOf="@id/typhoon"/>
 
                 <TextView
                     android:id="@+id/growth2"
@@ -130,7 +132,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/growth2"
                     android:textSize="15sp"
-                    app:layout_constraintTop_toBottomOf="@id/extreme_edit"
+                    app:layout_constraintTop_toBottomOf="@id/exp_edit"
                     app:layout_constraintStart_toStartOf="@id/growth2_edit"
                     app:layout_constraintBottom_toTopOf="@id/growth2_edit"/>
 
@@ -138,10 +140,10 @@
                     android:id="@+id/growth2_edit"
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/growth3_edit"
+                    app:layout_constraintStart_toEndOf="@id/growth1_edit"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/growth2"
-                    app:layout_constraintBottom_toTopOf="@id/typhoon"/>
+                    app:layout_constraintBottom_toTopOf="@id/limit"/>
 
                 <TextView
                     android:id="@+id/growth3"
@@ -149,7 +151,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/growth3"
                     android:textSize="15sp"
-                    app:layout_constraintTop_toBottomOf="@id/growth1_edit"
+                    app:layout_constraintTop_toBottomOf="@id/extreme_edit"
                     app:layout_constraintStart_toStartOf="@id/growth3_edit"
                     app:layout_constraintBottom_toTopOf="@id/growth3_edit"/>
 
@@ -157,10 +159,10 @@
                     android:id="@+id/growth3_edit"
                     android:layout_width="140sp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toEndOf="@id/growth2_edit"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/typhoon_edit"
                     app:layout_constraintTop_toBottomOf="@id/growth3"
-                    app:layout_constraintBottom_toTopOf="@id/limit"/>
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
                 <TextView
                     android:id="@+id/typhoon"
@@ -168,7 +170,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/typhoon"
                     android:textSize="15sp"
-                    app:layout_constraintTop_toBottomOf="@id/growth2_edit"
+                    app:layout_constraintTop_toBottomOf="@id/growth1_edit"
                     app:layout_constraintStart_toStartOf="@id/typhoon_edit"
                     app:layout_constraintBottom_toTopOf="@id/typhoon_edit"/>
 
@@ -176,7 +178,7 @@
                     android:id="@+id/typhoon_edit"
                     android:layout_width="140sp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/growth3_edit"
                     app:layout_constraintEnd_toStartOf="@id/limit_edit"
                     app:layout_constraintTop_toBottomOf="@id/typhoon"
                     app:layout_constraintBottom_toBottomOf="parent"/>
@@ -187,7 +189,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/limit"
                     android:textSize="15sp"
-                    app:layout_constraintTop_toBottomOf="@id/growth3_edit"
+                    app:layout_constraintTop_toBottomOf="@id/growth2_edit"
                     app:layout_constraintStart_toStartOf="@id/limit_edit"
                     app:layout_constraintBottom_toTopOf="@id/limit_edit"/>
 
@@ -213,7 +215,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/result_edit"
             app:layout_constraintTop_toBottomOf="@id/scrollView"
-            app:layout_constraintBottom_toTopOf="@id/cal_button"/>
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <EditText
             android:id="@+id/result_edit"
@@ -221,20 +223,20 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@id/result_text"
             app:layout_constraintTop_toBottomOf="@id/scrollView"
-            app:layout_constraintBottom_toTopOf="@id/cal_button"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/cal_button"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/cal_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
             android:background="@color/skyblue"
             android:text="@string/calculate"
             android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/result_edit"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/scrollView"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

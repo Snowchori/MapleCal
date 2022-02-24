@@ -1,8 +1,11 @@
 package com.example.maplecal
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.Menu
+import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import com.example.maplecal.databinding.ActivityMainBinding
 import com.example.maplecal.fragment.*
@@ -12,8 +15,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private val symbolFragment by lazy { SymbolFragment.newInstance() }
-    private val parkFragment by lazy { ParkFragment() }
-    private val hyperFragment by lazy { HyperFragment() }
+    private val parkFragment by lazy { ParkFragment.newInstance() }
+    private val hyperFragment by lazy { HyperFragment.newInstance() }
     private val trainFragment by lazy { TrainFragment() }
     private val growthFragment by lazy { GrowthFragment() }
 
