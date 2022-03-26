@@ -8,44 +8,45 @@
         android:id="@+id/symbol_image"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toStartOf="@id/symbol_gain"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/symbol_gain"
-        app:srcCompat="@drawable/symbol"
-        app:layout_constraintVertical_weight="1"/>
+        app:srcCompat="@drawable/symbol" />
 
     <TextView
         android:id="@+id/symbol_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
         android:text="@string/symbol"
+        app:layout_constraintDimensionRatio="h, 4:1"
         app:layout_constraintEnd_toStartOf="@+id/symbol_gain"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/symbol_image" />
 
     <TextView
         android:id="@+id/symbol_gain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="20dp"
+        android:gravity="center"
         android:text="@string/gain"
-        app:layout_constraintStart_toEndOf="@+id/symbol_image"
+        app:layout_constraintDimensionRatio="h, 4:1"
         app:layout_constraintEnd_toStartOf="@id/request_meso"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_weight="1"/>
+        app:layout_constraintStart_toEndOf="@+id/symbol_name"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/request_meso"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="20dp"
+        android:gravity="center"
         android:text="@string/meso"
+        app:layout_constraintDimensionRatio="h, 4:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/symbol_gain"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_weight="1"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

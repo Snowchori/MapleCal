@@ -17,9 +17,9 @@
             android:layout_marginStart="60dp"
             android:background="@color/white"
             android:columnCount="3"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintTop_toTopOf="parent">
 
             <CheckBox
                 android:id="@+id/park_sun"
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="3dp"
                 android:drawableStart="@drawable/tuesday"
-                android:text="@string/tue"/>
+                android:text="@string/tue" />
 
             <CheckBox
                 android:id="@+id/park_wed"
@@ -84,13 +84,13 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="60dp"
-            android:layout_marginEnd="30dp"
             android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
             android:background="@color/white"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/cal_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/gridLayout"/>
+            app:layout_constraintStart_toEndOf="@id/gridLayout"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/cal_button"
@@ -104,7 +104,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/gridLayout"
-            app:layout_constraintTop_toBottomOf="@id/recyclerView"/>
+            app:layout_constraintTop_toBottomOf="@id/recyclerView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

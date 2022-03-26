@@ -27,9 +27,10 @@ fun getGainPoint(level: Int): Int {
     }
 }
 
-fun getHyperState(ind: Int, level: Int): Double {
+fun getHyperState(ind: Int, level: Int): String {
     val slevel = listOf(7, 11, 12, 13)
     val elevel = listOf(15, 16)
+    val percent = listOf(4, 5, 7, 8, 9, 10, 11, 12, 15)
 
     val point = when (ind) {
         in 0..3 -> 30.0
@@ -44,10 +45,12 @@ fun getHyperState(ind: Int, level: Int): Double {
 
     var result = point * level
 
-    if (ind in slevel && level > 5) result += (level - 5) * point
+    if (ind in slevel && level > 5) result += level - 5
     else if (ind in elevel && level > 10) result += (level - 10) * point
 
-    return result
+    return if (ind in percent) "$result%"
+    else if (ind == 6) "$result / ${result / 10}"
+    else "$result"
 }
 
 fun getHyper() = arrayOf(

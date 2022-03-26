@@ -7,11 +7,12 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.maplecal.ItemSelectedListener
 import com.example.maplecal.R
 import com.example.maplecal.data.HyperData
 import com.example.maplecal.databinding.ItemRecyclerHyperBinding
 
-class HyperRecyclerViewAdapter(val context: Context) :
+class HyperRecyclerViewAdapter(private val listener: ItemSelectedListener, val context: Context) :
     RecyclerView.Adapter<HyperRecyclerViewAdapter.MyViewHolder>() {
     var datalist = mutableListOf<HyperData>()
 
@@ -26,6 +27,7 @@ class HyperRecyclerViewAdapter(val context: Context) :
                     id: Long
                 ) {
                     datalist[adapterPosition].hyperCount = position
+                    listener.onHyperSelected(datalist)
                 }
 
                 override fun onNothingSelected(p0: AdapterView<*>?) = Unit

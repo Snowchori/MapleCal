@@ -17,8 +17,7 @@ class MainActivity : AppCompatActivity() {
     private val symbolFragment by lazy { SymbolFragment.newInstance() }
     private val parkFragment by lazy { ParkFragment.newInstance() }
     private val hyperFragment by lazy { HyperFragment.newInstance() }
-    private val trainFragment by lazy { TrainFragment() }
-    private val growthFragment by lazy { GrowthFragment() }
+    private val growthFragment by lazy { GrowthFragment.newInstance() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,9 +47,6 @@ class MainActivity : AppCompatActivity() {
                     }
                     R.id.hyper_item -> {
                         changeFragment(hyperFragment, HyperFragment.TAG)
-                    }
-                    R.id.train_item -> {
-                        changeFragment(trainFragment, TrainFragment.TAG)
                     }
                     R.id.growth_item -> {
                         changeFragment(growthFragment, GrowthFragment.TAG)

@@ -14,10 +14,10 @@
             android:id="@+id/level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
             android:layout_marginStart="55dp"
-            android:textSize="20sp"
+            android:layout_marginTop="35dp"
             android:text="@string/level"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,17 +27,17 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="40dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent "/>
+            app:layout_constraintEnd_toEndOf="parent "
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/point"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
             android:layout_marginStart="30dp"
-            android:textSize="20sp"
+            android:layout_marginTop="25dp"
             android:text="@string/remain_point"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/level" />
 
@@ -45,11 +45,11 @@
             android:id="@+id/point_text"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="40dp"
             android:layout_marginTop="10dp"
+            android:layout_marginEnd="40dp"
             android:enabled="false"
-            app:layout_constraintTop_toBottomOf="@id/level_edit"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/level_edit" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -57,10 +57,10 @@
             android:layout_height="0dp"
             android:layout_margin="20dp"
             android:background="@color/white"
-            app:layout_constraintTop_toBottomOf="@id/point_text"
             app:layout_constraintBottom_toTopOf="@id/init_button"
+            app:layout_constraintEnd_toStartOf="@id/scrollView"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/scrollView" />
+            app:layout_constraintTop_toBottomOf="@id/point_text" />
 
         <ScrollView
             android:id="@+id/scrollView"
@@ -68,10 +68,19 @@
             android:layout_height="0dp"
             android:layout_margin="20dp"
             android:background="@color/white"
-            app:layout_constraintTop_toBottomOf="@id/point_text"
             app:layout_constraintBottom_toTopOf="@id/init_button"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/recyclerView"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/point_text">
+
+            <TextView
+                android:id="@+id/hyper_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:gravity="center_horizontal" />
+
+        </ScrollView>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/init_button"

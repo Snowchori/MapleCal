@@ -1,26 +1,28 @@
 package com.example.maplecal.fragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.maplecal.R
+import com.example.maplecal.ItemSelectedListener
 import com.example.maplecal.adapter.HyperRecyclerViewAdapter
 import com.example.maplecal.data.HyperData
 import com.example.maplecal.databinding.FragmentHyperBinding
-import com.example.maplecal.databinding.ItemRecyclerParkResultBinding
 import com.example.maplecal.model.getGainPoint
 import com.example.maplecal.model.getHyper
+import com.example.maplecal.model.getHyperState
+import com.example.maplecal.model.hyperPoint
 import java.lang.NumberFormatException
+import java.lang.StringBuilder
 
-class HyperFragment : Fragment() {
+class HyperFragment : Fragment(), ItemSelectedListener {
     private lateinit var binding: FragmentHyperBinding
     private lateinit var adapter: HyperRecyclerViewAdapter
     private lateinit var hypers: Array<HyperData>
+    private var characterLevel: Int = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,9 +42,8 @@ class HyperFragment : Fragment() {
         initButton()
         binding.levelEdit.addTextChangedListener {
             try {
-                val level = Integer.parseInt(it.toString())
-                if (level >= 140) binding.pointText.setText(getGainPoint(level).toString())
-                else binding.pointText.setText("0")
+                characterLevel = Integer.parseInt(it.toString())
+                binding.pointText.setText(getRemainPoint(characterLevel))
             } catch (e: NumberFormatException) {
             }
         }
@@ -53,7 +54,7 @@ class HyperFragment : Fragment() {
     }
 
     private fun initHyperRecyclerView(savedInstanceState: Bundle?) {
-        adapter = HyperRecyclerViewAdapter(requireContext())
+        adapter = HyperRecyclerViewAdapter(this, requireContext())
         hypers = getHyper()
         val data = mutableListOf<HyperData>()
         if (savedInstanceState != null) {
@@ -76,6 +77,7 @@ class HyperFragment : Fragment() {
     private fun initButton() {
         binding.initButton.setOnClickListener {
             val data = mutableListOf<HyperData>()
+            hypers = getHyper()
             for (i in 0 until hypers.size) {
                 data.add(hypers[i])
             }
@@ -88,6 +90,34 @@ class HyperFragment : Fragment() {
         super.onSaveInstanceState(outState)
         outState.putParcelableArrayList("hyperData", ArrayList(adapter.datalist))
         outState.putString("level", binding.levelEdit.text.toString())
+    }
+
+    override fun onHyperSelected(data: MutableList<HyperData>) {
+        binding.pointText.setText(getRemainPoint(characterLevel))
+        var hyperText = StringBuilder()
+        for (i in 0 until adapter.datalist.size) {
+            if (adapter.datalist[i].hyperCount > 0) {
+                hyperText.append(
+                    "${adapter.datalist[i].hyperName} ${
+                        getHyperState(
+                            adapter.datalist[i].hyperIndex,
+                            adapter.datalist[i].hyperCount
+                        )
+                    }\n"
+                )
+            }
+        }
+        binding.hyperResult.setText(hyperText.toString())
+    }
+
+    private fun getRemainPoint(level: Int): String {
+        return if (level < 140) "0"
+        else {
+            var usePoint = 0
+            for (i in 0 until adapter.datalist.size) usePoint += hyperPoint[adapter.datalist[i].hyperCount]
+
+            (getGainPoint(level) - usePoint).toString()
+        }
     }
 
     companion object {
