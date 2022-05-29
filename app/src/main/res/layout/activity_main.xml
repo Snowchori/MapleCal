@@ -32,11 +32,11 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:elevation="10dp"
-        app:menu="@menu/navi_menu"
         app:itemTextColor="@drawable/menu_selector_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fl_container"/>
+        app:layout_constraintTop_toBottomOf="@id/fl_container"
+        app:menu="@menu/navi_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

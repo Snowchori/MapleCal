@@ -1,8 +1,11 @@
 package com.example.maplecal
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.Menu
+import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import com.example.maplecal.databinding.ActivityMainBinding
 import com.example.maplecal.fragment.*
@@ -11,11 +14,10 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val symbolFragment by lazy { SymbolFragment() }
-    private val parkFragment by lazy { ParkFragment() }
-    private val hyperFragment by lazy { HyperFragment() }
-    private val trainFragment by lazy { TrainFragment() }
-    private val growthFragment by lazy { GrowthFragment() }
+    private val symbolFragment by lazy { SymbolFragment.newInstance() }
+    private val parkFragment by lazy { ParkFragment.newInstance() }
+    private val hyperFragment by lazy { HyperFragment.newInstance() }
+    private val growthFragment by lazy { GrowthFragment.newInstance() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,9 +48,6 @@ class MainActivity : AppCompatActivity() {
                     R.id.hyper_item -> {
                         changeFragment(hyperFragment, HyperFragment.TAG)
                     }
-                    R.id.train_item -> {
-                        changeFragment(trainFragment, TrainFragment.TAG)
-                    }
                     R.id.growth_item -> {
                         changeFragment(growthFragment, GrowthFragment.TAG)
                     }
@@ -69,5 +68,4 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.option_menu, menu)
         return true
     }
-
 }
