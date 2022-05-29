@@ -7,8 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.maplecal.databinding.FragmentGrowthBinding
 import com.example.maplecal.model.getExpResult
+import com.example.maplecal.model.getRequestExp
 import kotlinx.coroutines.*
+import org.jsoup.Jsoup
 import java.lang.NumberFormatException
+import java.net.URLEncoder
+import kotlin.math.exp
 
 class GrowthFragment : Fragment() {
     private lateinit var binding: FragmentGrowthBinding
@@ -52,7 +56,7 @@ class GrowthFragment : Fragment() {
 
     private fun initButton() {
         binding.calButton.setOnClickListener {
-            CoroutineScope(Dispatchers.IO).async {
+            CoroutineScope(Dispatchers.IO).launch {
                 try {
                     val data = mutableListOf<Int>()
                     data.add(binding.extremeEdit.text.toString().toInt())
@@ -72,6 +76,49 @@ class GrowthFragment : Fragment() {
                 } catch (e: NumberFormatException) {
                     withContext(Dispatchers.Main) {
                         binding.resultEdit.setText("입력값 오류")
+                    }
+                }
+            }
+        }
+
+        binding.searchButton.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                val baseUrl = "https://maplestory.nexon.com"
+                val nickname = binding.nickname.text.toString()
+                if (nickname != "") {
+                    val url = baseUrl + "/Ranking/World/Total?c=" + URLEncoder.encode(
+                        nickname,
+                        "UTF-8"
+                    ) + "&w=0"
+
+                    val jsoup = Jsoup.connect(url)
+                    val doc = jsoup.get()
+                    val tbody = doc.select("tbody")
+                    val td = tbody.select("td")
+                    var levelIndex = -1
+                    var expIndex = -1
+                    for (i in 0 until td.size) {
+                        val name = td[i].select("a")
+                        if (name.text() == nickname) {
+                            levelIndex = i + 1
+                            expIndex = i + 2
+                            break
+                        }
+                    }
+                    var level = "0"
+                    var exp = 0.0
+                    if (levelIndex >= 0 && expIndex >= 0) {
+                        level = td[levelIndex].text().replace("Lv.", "")
+                        val result = async {
+                            getRequestExp(level.toInt())
+                        }
+                        val expUp = td[expIndex].text().replace(",", "").toLong()
+                        exp = expUp * 100 / result.await().toDouble()
+                    }
+
+                    withContext(Dispatchers.Main) {
+                        binding.levelEdit.setText(level)
+                        binding.expEdit.setText(String.format("%.3f", exp))
                     }
                 }
             }

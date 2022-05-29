@@ -1,6 +1,7 @@
 package com.example.maplecal.model
 
 import com.example.maplecal.ExpService
+import com.example.maplecal.RetrofitClient
 import kotlinx.coroutines.*
 
 suspend fun getExpResult(level: Int, percent: Double, data: MutableList<Int>): String {
@@ -26,7 +27,7 @@ suspend fun getExpResult(level: Int, percent: Double, data: MutableList<Int>): S
 suspend fun getRequestExp(level: Int): Long =
     coroutineScope {
         try {
-            val exp = ExpService.create().getExp(level, level + 1, "n")
+            val exp = RetrofitClient.service.getExp(level, level + 1, "n")
             when (exp.error) {
                 "false" -> {
                     return@coroutineScope exp.result.toLong()
