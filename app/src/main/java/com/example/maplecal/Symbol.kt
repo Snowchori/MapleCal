@@ -1,7 +1,7 @@
 package com.example.maplecal.model
 
 import com.example.maplecal.R
-import com.example.maplecal.data.SymbolData
+import com.example.maplecal.SymbolData
 
 private val arcaneGrowth = listOf(
     0, 12, 15, 20, 27, 36, 47, 60, 75, 92, 111, 132, 155, 180,

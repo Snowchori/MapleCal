@@ -1,10 +1,10 @@
-package com.example.maplecal.adapter
+package com.example.maplecal.symbol
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.maplecal.data.SymbolData
+import com.example.maplecal.SymbolData
 import com.example.maplecal.databinding.ItemRecyclerSymbolResultBinding
 import com.example.maplecal.model.*
 import java.text.DateFormat

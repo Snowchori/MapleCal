@@ -1,4 +1,4 @@
-package com.example.maplecal.adapter
+package com.example.maplecal.hyper
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.maplecal.ItemSelectedListener
 import com.example.maplecal.R
-import com.example.maplecal.data.HyperData
+import com.example.maplecal.HyperData
 import com.example.maplecal.databinding.ItemRecyclerHyperBinding
 
 class HyperRecyclerViewAdapter(private val listener: ItemSelectedListener, val context: Context) :

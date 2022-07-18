@@ -1,4 +1,4 @@
-package com.example.maplecal.data
+package com.example.maplecal
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

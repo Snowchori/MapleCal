@@ -1,6 +1,5 @@
 package com.example.maplecal
 
-import com.example.maplecal.data.ExpResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

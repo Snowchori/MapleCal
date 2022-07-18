@@ -1,39 +1,29 @@
-package com.example.maplecal.dialog
+package com.example.maplecal.park
 
-import android.content.Context
-import android.graphics.Point
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.maplecal.data.SymbolData
-import com.example.maplecal.adapter.SymbolResultRecyclerViewAdapter
-import com.example.maplecal.databinding.SymbolDialogBinding
+import com.example.maplecal.ParkData
+import com.example.maplecal.databinding.ParkDialogBinding
 import com.example.maplecal.util.resize
 
-class SymbolDialog : DialogFragment() {
-    private lateinit var binding: SymbolDialogBinding
-    private lateinit var adapter: SymbolResultRecyclerViewAdapter
+class ParkDialog : DialogFragment() {
+    private lateinit var binding: ParkDialogBinding
+    private lateinit var adapter: ParkResultRecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = SymbolDialogBinding.inflate(layoutInflater)
+        binding = ParkDialogBinding.inflate(layoutInflater)
         arguments?.let {
-            it.getParcelableArrayList<SymbolData>("symbol").toString()
+            it.getParcelableArrayList<ParkData>("park").toString()
         }
         return binding.root
-    }
-
-    override fun onStart() {
-        super.onStart()
-        resize(0.9f, 0.9f)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,16 +31,21 @@ class SymbolDialog : DialogFragment() {
         initView()
     }
 
+    override fun onStart() {
+        super.onStart()
+        resize(0.9f, 0.9f)
+    }
+
     private fun initView() {
-        initSymbolRecyclerView()
+        initParkRecyclerView()
         initButton()
     }
 
-    private fun initSymbolRecyclerView() {
-        adapter = SymbolResultRecyclerViewAdapter()
+    private fun initParkRecyclerView() {
+        adapter = ParkResultRecyclerViewAdapter()
         arguments?.let {
-            val data = mutableListOf<SymbolData>()
-            val saveData = it.getParcelableArrayList<SymbolData>("symbol")
+            val data = mutableListOf<ParkData>()
+            val saveData = it.getParcelableArrayList<ParkData>("park")
             if (saveData != null) {
                 for (i in 0 until saveData.size) {
                     data.add(saveData[i])

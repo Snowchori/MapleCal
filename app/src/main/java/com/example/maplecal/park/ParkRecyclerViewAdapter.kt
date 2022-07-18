@@ -1,10 +1,10 @@
-package com.example.maplecal.adapter
+package com.example.maplecal.park
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
-import com.example.maplecal.data.ParkData
+import com.example.maplecal.ParkData
 import com.example.maplecal.databinding.ItemRecyclerParkBinding
 
 

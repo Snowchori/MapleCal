@@ -1,4 +1,4 @@
-package com.example.maplecal.fragment
+package com.example.maplecal.hyper
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,8 +8,7 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.maplecal.ItemSelectedListener
-import com.example.maplecal.adapter.HyperRecyclerViewAdapter
-import com.example.maplecal.data.HyperData
+import com.example.maplecal.HyperData
 import com.example.maplecal.databinding.FragmentHyperBinding
 import com.example.maplecal.model.getGainPoint
 import com.example.maplecal.model.getHyper

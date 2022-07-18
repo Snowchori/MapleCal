@@ -1,7 +1,7 @@
 package com.example.maplecal.model
 
 import com.example.maplecal.R
-import com.example.maplecal.data.ParkData
+import com.example.maplecal.ParkData
 
 fun getPark() = arrayOf(
     ParkData(0, R.drawable.sunday, "일요일 훈장", "0", "0"),

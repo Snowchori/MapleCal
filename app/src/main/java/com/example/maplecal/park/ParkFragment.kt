@@ -1,7 +1,6 @@
-package com.example.maplecal.fragment
+package com.example.maplecal.park
 
 import android.os.Bundle
-import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +8,8 @@ import android.view.ViewGroup
 import android.widget.CompoundButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.maplecal.R
-import com.example.maplecal.adapter.ParkRecyclerViewAdapter
-import com.example.maplecal.data.ParkData
+import com.example.maplecal.ParkData
 import com.example.maplecal.databinding.FragmentParkBinding
-import com.example.maplecal.dialog.ParkDialog
 import com.example.maplecal.model.getPark
 
 class ParkFragment : Fragment(), CompoundButton.OnCheckedChangeListener {

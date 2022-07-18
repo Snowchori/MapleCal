@@ -1,6 +1,6 @@
 package com.example.maplecal.model
 
-import com.example.maplecal.data.HyperData
+import com.example.maplecal.HyperData
 
 val hyperPoint = listOf(0, 1, 3, 7, 15, 25, 40, 60, 85, 115, 150, 200, 265, 345, 440, 550)
 

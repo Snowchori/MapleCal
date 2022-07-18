@@ -1,4 +1,4 @@
-package com.example.maplecal.fragment
+package com.example.maplecal.symbol
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,10 +8,8 @@ import android.view.ViewGroup
 import android.widget.CompoundButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.maplecal.*
-import com.example.maplecal.adapter.SymbolRecyclerViewAdapter
-import com.example.maplecal.data.SymbolData
+import com.example.maplecal.SymbolData
 import com.example.maplecal.databinding.FragmentSymbolBinding
-import com.example.maplecal.dialog.SymbolDialog
 import com.example.maplecal.model.getSymbol
 
 class SymbolFragment : Fragment(), CompoundButton.OnCheckedChangeListener {

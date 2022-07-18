@@ -1,14 +1,14 @@
 package com.example.maplecal
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.DisplayMetrics
 import android.view.Menu
-import android.view.WindowManager
 import androidx.fragment.app.Fragment
+import com.example.maplecal.symbol.SymbolFragment
 import com.example.maplecal.databinding.ActivityMainBinding
-import com.example.maplecal.fragment.*
+import com.example.maplecal.growth.GrowthFragment
+import com.example.maplecal.hyper.HyperFragment
+import com.example.maplecal.park.ParkFragment
 
 class MainActivity : AppCompatActivity() {
 

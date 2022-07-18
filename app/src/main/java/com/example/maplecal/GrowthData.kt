@@ -1,4 +1,4 @@
-package com.example.maplecal.data
+package com.example.maplecal
 
 data class GrowthData(
     val growthIndex: Int,

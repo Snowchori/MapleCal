@@ -1,4 +1,4 @@
-package com.example.maplecal.fragment
+package com.example.maplecal.growth
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,7 +12,6 @@ import kotlinx.coroutines.*
 import org.jsoup.Jsoup
 import java.lang.NumberFormatException
 import java.net.URLEncoder
-import kotlin.math.exp
 
 class GrowthFragment : Fragment() {
     private lateinit var binding: FragmentGrowthBinding

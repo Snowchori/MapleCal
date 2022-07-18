@@ -1,10 +1,10 @@
-package com.example.maplecal.adapter
+package com.example.maplecal.symbol
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
-import com.example.maplecal.data.SymbolData
+import com.example.maplecal.SymbolData
 import com.example.maplecal.databinding.ItemRecyclerSymbolBinding
 
 class SymbolRecyclerViewAdapter : RecyclerView.Adapter<SymbolRecyclerViewAdapter.MyViewHolder>() {
