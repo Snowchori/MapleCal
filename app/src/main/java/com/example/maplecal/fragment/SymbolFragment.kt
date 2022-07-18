@@ -36,10 +36,6 @@ class SymbolFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
 
     private fun initView(savedInstanceState: Bundle?) {
         symbols = getSymbol()
-        if (savedInstanceState != null) {
-            val nickname = savedInstanceState.getString("nickname")
-            if (nickname != null) binding.nickname.setText(nickname)
-        }
         initSymbolRecyclerView(savedInstanceState)
         initSymbolCheckBox()
         initButton()
@@ -105,7 +101,6 @@ class SymbolFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putParcelableArrayList("symbolData", ArrayList(adapter.datalist))
-        outState.putString("nickname", binding.nickname.text.toString())
     }
 
     companion object {

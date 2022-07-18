@@ -3,10 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/snowc/MapleCal/app/src/main/res/layout-land/fragment_symbol.xml" value="0.2125" />
         <entry key="..\:/Users/snowc/MapleCal/app/src/main/res/layout/activity_main.xml" value="0.14285714285714285" />
+        <entry key="..\:/Users/snowc/MapleCal/app/src/main/res/layout/dialog_loading.xml" value="0.14285714285714285" />
         <entry key="..\:/Users/snowc/MapleCal/app/src/main/res/layout/fragment_growth.xml" value="0.28396739130434784" />
+        <entry key="..\:/Users/snowc/MapleCal/app/src/main/res/layout/fragment_park.xml" value="0.18478260869565216" />
         <entry key="..\:/Users/snowc/MapleCal/app/src/main/res/layout/fragment_symbol.xml" value="0.28396739130434784" />
+        <entry key="..\:/Users/snowc/MapleCal/app/src/main/res/layout/item_recycler_park.xml" value="0.18478260869565216" />
         <entry key="..\:/Users/snowc/MapleCal/app/src/main/res/layout/item_recycler_symbol.xml" value="0.28396739130434784" />
+        <entry key="..\:/Users/snowc/MapleCal/app/src/main/res/layout/symbol_dialog.xml" value="0.26902173913043476" />
         <entry key="..\:/Users/snowc/MapleCal/app/src/main/res/menu/navi_menu.xml" value="0.29375" />
         <entry key="..\:/Users/snowc/MapleCal/app/src/main/res/menu/option_menu.xml" value="0.29375" />
       </map>
