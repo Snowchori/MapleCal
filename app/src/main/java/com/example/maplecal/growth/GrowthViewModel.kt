@@ -1,4 +1,8 @@
 package com.example.maplecal.growth
 
-class GrowthViewModel {
+import com.example.maplecal.domain.GetGrowthUsecase
+
+class GrowthViewModel(
+    private val growthUsecase: GetGrowthUsecase
+) {
 }

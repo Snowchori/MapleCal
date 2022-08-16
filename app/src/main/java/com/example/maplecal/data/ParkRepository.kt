@@ -1,4 +1,7 @@
 package com.example.maplecal.data
 
-class ParkRepository {
+class ParkRepository(
+    private val parkLocalDataSource: ParkLocalDataSource
+) {
+
 }

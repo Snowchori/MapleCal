@@ -9,7 +9,9 @@ import com.example.maplecal.databinding.ActivityMainBinding
 import com.example.maplecal.growth.GrowthFragment
 import com.example.maplecal.hyper.HyperFragment
 import com.example.maplecal.park.ParkFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
