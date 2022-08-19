@@ -8,13 +8,12 @@ import android.view.ViewGroup
 import android.widget.CompoundButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.maplecal.R
-import com.example.maplecal.ParkData
+import com.example.maplecal.domain.model.Park
 import com.example.maplecal.databinding.FragmentParkBinding
 
 class ParkFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
     private lateinit var binding: FragmentParkBinding
     private lateinit var adapter: ParkRecyclerViewAdapter
-    private lateinit var parks: Array<ParkData>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,15 +29,6 @@ class ParkFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
     }
 
     private fun initView(savedInstanceState: Bundle?) {
-        parks = arrayOf(
-            ParkData(0, R.drawable.sunday, "일요일 훈장", "0", "0"),
-            ParkData(1, R.drawable.monday, "월요일 훈장", "0", "0"),
-            ParkData(2, R.drawable.tuesday, "화요일 훈장", "0", "0"),
-            ParkData(3, R.drawable.wednesday, "수요일 훈장", "0", "0"),
-            ParkData(4, R.drawable.thursday, "목요일 훈장", "0", "0"),
-            ParkData(5, R.drawable.friday, "금요일 훈장", "0", "0"),
-            ParkData(6, R.drawable.saturday, "토요일 훈장", "0", "0")
-        )
         initParkRecyclerView(savedInstanceState)
         initParkCheckBox()
         initButton()
@@ -47,8 +37,8 @@ class ParkFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
     private fun initParkRecyclerView(savedInstanceState: Bundle?) {
         adapter = ParkRecyclerViewAdapter()
         if (savedInstanceState != null) {
-            val data = mutableListOf<ParkData>()
-            val saveData = savedInstanceState.getParcelableArrayList<ParkData>("parkData")
+            val data = mutableListOf<Park>()
+            val saveData = savedInstanceState.getParcelableArrayList<Park>("parkData")
             if (saveData != null) {
                 for (i in 0 until saveData.size) {
                     data.add(saveData[i])

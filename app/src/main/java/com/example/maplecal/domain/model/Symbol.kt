@@ -1,12 +1,11 @@
-package com.example.maplecal
+package com.example.maplecal.domain.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class SymbolData(
+data class Symbol(
     val symbolIndex: Int,
-    val symbolImg: Int,
     val symbolName: String,
     val symbolExtra: String,
     var symbolLevel: String,

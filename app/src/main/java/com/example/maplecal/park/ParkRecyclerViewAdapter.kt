@@ -4,12 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
-import com.example.maplecal.ParkData
+import com.example.maplecal.domain.model.Park
 import com.example.maplecal.databinding.ItemRecyclerParkBinding
+import com.example.maplecal.parks
 
 
 class ParkRecyclerViewAdapter : RecyclerView.Adapter<ParkRecyclerViewAdapter.MyViewHolder>() {
-    var datalist = mutableListOf<ParkData>()
+    var datalist = mutableListOf<Park>()
 
     inner class MyViewHolder(val binding: ItemRecyclerParkBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -30,7 +31,7 @@ class ParkRecyclerViewAdapter : RecyclerView.Adapter<ParkRecyclerViewAdapter.MyV
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.binding.parkImage.setImageResource(datalist[position].parkImg)
+        holder.binding.parkImage.setImageResource(parks[datalist[position].parkIndex])
         holder.binding.parkName.text = datalist[position].parkName
         holder.binding.countEdit.setText(datalist[position].parkCount)
         holder.binding.pointEdit.setText(datalist[position].parkPoint)
@@ -38,11 +39,11 @@ class ParkRecyclerViewAdapter : RecyclerView.Adapter<ParkRecyclerViewAdapter.MyV
 
     override fun getItemCount(): Int = datalist.size
 
-    fun addItem(parkData: ParkData, ind: Int) {
+    fun addItem(park: Park, ind: Int) {
         for (i in 0 until this.datalist.size) {
             if (this.datalist[i].parkIndex == ind) return
         }
-        this.datalist.add(parkData)
+        this.datalist.add(park)
         this.datalist.sortBy { it.parkIndex }
         notifyDataSetChanged()
     }

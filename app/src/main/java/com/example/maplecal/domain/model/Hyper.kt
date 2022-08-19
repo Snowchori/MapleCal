@@ -1,10 +1,10 @@
-package com.example.maplecal
+package com.example.maplecal.domain.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class HyperData(
+data class Hyper(
     val hyperIndex: Int,
     val hyperName: String,
     var hyperCount: Int

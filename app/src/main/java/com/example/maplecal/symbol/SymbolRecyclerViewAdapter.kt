@@ -4,11 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
-import com.example.maplecal.SymbolData
+import com.example.maplecal.domain.model.Symbol
 import com.example.maplecal.databinding.ItemRecyclerSymbolBinding
+import com.example.maplecal.symbols
 
 class SymbolRecyclerViewAdapter : RecyclerView.Adapter<SymbolRecyclerViewAdapter.MyViewHolder>() {
-    var datalist = mutableListOf<SymbolData>()
+    var datalist = mutableListOf<Symbol>()
 
     inner class MyViewHolder(val binding: ItemRecyclerSymbolBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -32,7 +33,7 @@ class SymbolRecyclerViewAdapter : RecyclerView.Adapter<SymbolRecyclerViewAdapter
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.binding.symbolImage.setImageResource(datalist[position].symbolImg)
+        holder.binding.symbolImage.setImageResource(symbols[datalist[position].symbolIndex])
         holder.binding.symbolName.text = datalist[position].symbolName
         holder.binding.extraBool.text = datalist[position].symbolExtra
         holder.binding.levelEdit.setText(datalist[position].symbolLevel)
@@ -42,11 +43,11 @@ class SymbolRecyclerViewAdapter : RecyclerView.Adapter<SymbolRecyclerViewAdapter
 
     override fun getItemCount(): Int = datalist.size
 
-    fun addItem(symbolData: SymbolData, ind: Int) {
+    fun addItem(symbol: Symbol, ind: Int) {
         for (i in 0 until this.datalist.size) {
             if (this.datalist[i].symbolIndex == ind) return
         }
-        this.datalist.add(symbolData)
+        this.datalist.add(symbol)
         this.datalist.sortBy { it.symbolIndex }
         notifyDataSetChanged()
     }

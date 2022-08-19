@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.maplecal.SymbolData
+import com.example.maplecal.domain.model.Symbol
 import com.example.maplecal.databinding.SymbolDialogBinding
 import com.example.maplecal.util.resize
 
@@ -21,7 +21,7 @@ class SymbolDialog : DialogFragment() {
     ): View? {
         binding = SymbolDialogBinding.inflate(layoutInflater)
         arguments?.let {
-            it.getParcelableArrayList<SymbolData>("symbol").toString()
+            it.getParcelableArrayList<Symbol>("symbol").toString()
         }
         return binding.root
     }
@@ -44,8 +44,8 @@ class SymbolDialog : DialogFragment() {
     private fun initSymbolRecyclerView() {
         adapter = SymbolResultRecyclerViewAdapter()
         arguments?.let {
-            val data = mutableListOf<SymbolData>()
-            val saveData = it.getParcelableArrayList<SymbolData>("symbol")
+            val data = mutableListOf<Symbol>()
+            val saveData = it.getParcelableArrayList<Symbol>("symbol")
             if (saveData != null) {
                 for (i in 0 until saveData.size) {
                     data.add(saveData[i])

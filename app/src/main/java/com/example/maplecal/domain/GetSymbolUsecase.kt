@@ -1,6 +1,6 @@
 package com.example.maplecal.domain
 
-import com.example.maplecal.data.SymbolRepository
+import com.example.maplecal.domain.model.Symbol
 
 class GetSymbolUsecase(
     private val symbolRepository: SymbolRepository
@@ -73,5 +73,9 @@ class GetSymbolUsecase(
         for (i in start until end) meso += symbolRepository.getAuthenticArx(i)
 
         return meso
+    }
+
+    fun getSymbols(index: Int) : Symbol {
+        return symbolRepository.getSymbols(index)
     }
 }

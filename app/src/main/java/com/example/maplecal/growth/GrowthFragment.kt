@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.maplecal.databinding.FragmentGrowthBinding
-import com.example.maplecal.model.getExpResult
-import com.example.maplecal.model.getRequestExp
 import kotlinx.coroutines.*
 import org.jsoup.Jsoup
 import java.lang.NumberFormatException

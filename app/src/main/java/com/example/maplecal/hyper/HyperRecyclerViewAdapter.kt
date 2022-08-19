@@ -9,12 +9,12 @@ import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.maplecal.ItemSelectedListener
 import com.example.maplecal.R
-import com.example.maplecal.HyperData
+import com.example.maplecal.domain.model.Hyper
 import com.example.maplecal.databinding.ItemRecyclerHyperBinding
 
 class HyperRecyclerViewAdapter(private val listener: ItemSelectedListener, val context: Context) :
     RecyclerView.Adapter<HyperRecyclerViewAdapter.MyViewHolder>() {
-    var datalist = mutableListOf<HyperData>()
+    var datalist = mutableListOf<Hyper>()
 
     inner class MyViewHolder(val binding: ItemRecyclerHyperBinding) :
         RecyclerView.ViewHolder(binding.root) {

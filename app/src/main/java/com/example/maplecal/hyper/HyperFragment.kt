@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.maplecal.ItemSelectedListener
-import com.example.maplecal.HyperData
+import com.example.maplecal.domain.model.Hyper
 import com.example.maplecal.databinding.FragmentHyperBinding
 import com.example.maplecal.model.getGainPoint
 import com.example.maplecal.model.getHyper
@@ -20,7 +20,7 @@ import java.lang.StringBuilder
 class HyperFragment : Fragment(), ItemSelectedListener {
     private lateinit var binding: FragmentHyperBinding
     private lateinit var adapter: HyperRecyclerViewAdapter
-    private lateinit var hypers: Array<HyperData>
+    private lateinit var hypers: Array<Hyper>
     private var characterLevel: Int = 0
 
     override fun onCreateView(
@@ -55,9 +55,9 @@ class HyperFragment : Fragment(), ItemSelectedListener {
     private fun initHyperRecyclerView(savedInstanceState: Bundle?) {
         adapter = HyperRecyclerViewAdapter(this, requireContext())
         hypers = getHyper()
-        val data = mutableListOf<HyperData>()
+        val data = mutableListOf<Hyper>()
         if (savedInstanceState != null) {
-            val saveData = savedInstanceState.getParcelableArrayList<HyperData>("hyperData")
+            val saveData = savedInstanceState.getParcelableArrayList<Hyper>("hyperData")
             if (saveData != null) {
                 for (i in 0 until saveData.size) {
                     data.add(saveData[i])
@@ -75,7 +75,7 @@ class HyperFragment : Fragment(), ItemSelectedListener {
 
     private fun initButton() {
         binding.initButton.setOnClickListener {
-            val data = mutableListOf<HyperData>()
+            val data = mutableListOf<Hyper>()
             hypers = getHyper()
             for (i in 0 until hypers.size) {
                 data.add(hypers[i])
@@ -91,7 +91,7 @@ class HyperFragment : Fragment(), ItemSelectedListener {
         outState.putString("level", binding.levelEdit.text.toString())
     }
 
-    override fun onHyperSelected(data: MutableList<HyperData>) {
+    override fun onHyperSelected(data: MutableList<Hyper>) {
         binding.pointText.setText(getRemainPoint(characterLevel))
         var hyperText = StringBuilder()
         for (i in 0 until adapter.datalist.size) {
@@ -107,16 +107,6 @@ class HyperFragment : Fragment(), ItemSelectedListener {
             }
         }
         binding.hyperResult.setText(hyperText.toString())
-    }
-
-    private fun getRemainPoint(level: Int): String {
-        return if (level < 140) "0"
-        else {
-            var usePoint = 0
-            for (i in 0 until adapter.datalist.size) usePoint += hyperPoint[adapter.datalist[i].hyperCount]
-
-            (getGainPoint(level) - usePoint).toString()
-        }
     }
 
     companion object {
