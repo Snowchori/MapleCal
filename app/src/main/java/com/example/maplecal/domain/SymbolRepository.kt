@@ -23,11 +23,19 @@ interface SymbolRepository {
 
     fun getAuthenticArx(index: Int) : Long
 
-    fun getSymbols(index: Int) : Symbol
+    fun getSymbols() : Array<Symbol>
 
-    fun setSymbolsLevel(index: Int, level: String)
+    fun getSymbolsSize() : Int
 
-    fun setSymbolsCount(index: Int, count: String)
+    fun getSymbol(index: Int) : Symbol
 
-    fun setSymbolsExtra(index: Int, mini: String)
+    fun getSymbolChecked(index: Int) : Boolean
+
+    fun setSymbolLevel(index: Int, level: String)
+
+    fun setSymbolCount(index: Int, count: String)
+
+    fun setSymbolExtra(index: Int, mini: String)
+
+    fun setSymbolCheked(index: Int, boolean: Boolean)
 }

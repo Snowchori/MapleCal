@@ -4,11 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import androidx.fragment.app.Fragment
-import com.example.maplecal.symbol.SymbolFragment
+import com.example.maplecal.presentation.symbol.SymbolFragment
 import com.example.maplecal.databinding.ActivityMainBinding
-import com.example.maplecal.growth.GrowthFragment
-import com.example.maplecal.hyper.HyperFragment
-import com.example.maplecal.park.ParkFragment
+import com.example.maplecal.presentation.growth.GrowthFragment
+import com.example.maplecal.presentation.park.ParkFragment
+// import com.example.maplecal.presentation.hyper.HyperFragment
+// import com.example.maplecal.presentation.park.ParkFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,8 +19,8 @@ class MainActivity : AppCompatActivity() {
 
     private val symbolFragment by lazy { SymbolFragment.newInstance() }
     private val parkFragment by lazy { ParkFragment.newInstance() }
-    private val hyperFragment by lazy { HyperFragment.newInstance() }
-    private val growthFragment by lazy { GrowthFragment.newInstance() }
+    // private val hyperFragment by lazy { HyperFragment.newInstance() }
+    // private val growthFragment by lazy { GrowthFragment.newInstance() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,12 +48,13 @@ class MainActivity : AppCompatActivity() {
                     R.id.park_item -> {
                         changeFragment(parkFragment, ParkFragment.TAG)
                     }
+                    /*
                     R.id.hyper_item -> {
                         changeFragment(hyperFragment, HyperFragment.TAG)
                     }
                     R.id.growth_item -> {
                         changeFragment(growthFragment, GrowthFragment.TAG)
-                    }
+                    }*/
                 }
                 true
             }

@@ -1,24 +1,64 @@
-package com.example.maplecal.symbol
+package com.example.maplecal.presentation.symbol
 
 import android.annotation.SuppressLint
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.maplecal.R
-import com.example.maplecal.domain.model.Symbol
 import com.example.maplecal.domain.GetSymbolUsecase
 import com.example.maplecal.domain.SetSymbolUsecase
-import java.security.PrivateKey
+import com.example.maplecal.domain.model.Symbol
+import dagger.hilt.android.scopes.ViewModelScoped
 import java.text.DateFormat
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
-class SymbolViewModel(
+class SymbolViewModel @Inject constructor(
     private val getSymbolUsecase: GetSymbolUsecase,
     private val setSymbolUsecase: SetSymbolUsecase
 ) : ViewModel() {
-    // datasource 합치고 거기에 넣기 drawable은 enum으로 빼서 관리
 
-    // 뷰모델에서 계산을한 결과를 보내주기만해서 받고 띄우기만
+    val symbolLiveData = MutableLiveData<List<Symbol>>()
+
+    fun updateSymbols() {
+        symbolLiveData.value = getSymbolUsecase.getSymbols()
+    }
+
+    fun setSymbolLevel(index: Int, level: String) {
+        setSymbolUsecase.setSymbolLevel(index, level)
+    }
+
+    fun setSymbolCount(index: Int, count: String) {
+        setSymbolUsecase.setSymbolCount(index, count)
+    }
+
+    fun setSymbolExtra(index: Int, mini: String) {
+        setSymbolUsecase.setSymbolExtra(index, mini)
+    }
+
+    fun setSymbolCheked(index: Int, boolean: Boolean) {
+        setSymbolUsecase.setSymbolCheked(index, boolean)
+        updateSymbols()
+    }
+
+    fun getSymbolResult() : MutableList<SymbolResult> {
+        val symbolLists = getSymbolUsecase.getSymbols()
+        val symbolResultList = mutableListOf<SymbolResult>()
+        for (symbolList in symbolLists) {
+            val index = symbolList.symbolIndex
+            val name = symbolList.symbolName
+            val level = symbolList.symbolLevel
+            val count = symbolList.symbolCount
+            val mini = symbolList.symbolMini
+            symbolResultList.add(
+                SymbolResult(index, name, getMeso(index, level.toInt()), getTime(index, level.toInt(),
+                count.toInt(), mini.toInt()))
+            )
+        }
+
+        return symbolResultList
+    }
+
     private fun getMeso(ind: Int, level: Int): String {
         val dec = DecimalFormat("#,###")
         val meso = when (ind) {

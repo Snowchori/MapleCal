@@ -8,5 +8,6 @@ data class Park(
     val parkIndex: Int,
     val parkName: String,
     var parkCount: String,
-    var parkPoint: String
+    var parkPoint: String,
+    var parkCheked: Boolean
 ) : Parcelable

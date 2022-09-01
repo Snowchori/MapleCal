@@ -1,4 +1,4 @@
-package com.example.maplecal.growth
+package com.example.maplecal.presentation.growth
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -65,10 +65,10 @@ class GrowthFragment : Fragment() {
                     val level = binding.levelEdit.text.toString().toInt()
                     val percent = binding.expEdit.text.toString().toDouble()
                     val result = async {
-                        getExpResult(level, percent, data)
+                        // getExpResult(level, percent, data)
                     }
                     withContext(Dispatchers.Main) {
-                        binding.resultEdit.setText(result.await())
+                        // binding.resultEdit.setText(result.await())
                     }
                 } catch (e: NumberFormatException) {
                     withContext(Dispatchers.Main) {
@@ -107,10 +107,10 @@ class GrowthFragment : Fragment() {
                     if (levelIndex >= 0 && expIndex >= 0) {
                         level = td[levelIndex].text().replace("Lv.", "")
                         val result = async {
-                            getRequestExp(level.toInt())
+                            // getRequestExp(level.toInt())
                         }
                         val expUp = td[expIndex].text().replace(",", "").toLong()
-                        exp = expUp * 100 / result.await().toDouble()
+                        // exp = expUp * 100 / result.await().toDouble()
                     }
 
                     withContext(Dispatchers.Main) {

@@ -2,8 +2,14 @@ package com.example.maplecal.data
 
 import com.example.maplecal.domain.SymbolRepository
 import com.example.maplecal.domain.model.Symbol
+import dagger.hilt.android.scopes.ActivityScoped
+import dagger.hilt.android.scopes.FragmentScoped
+import dagger.hilt.android.scopes.ViewModelScoped
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class SymbolRepositoryImpl(
+@Singleton
+class SymbolRepositoryImpl @Inject constructor(
     private val symbolLocalDataSource: SymbolLocalDataSource
 ): SymbolRepository {
     override fun getArcaneGrowth(index:Int) : Int {
@@ -46,19 +52,35 @@ class SymbolRepositoryImpl(
         return symbolLocalDataSource.getAuthenticArx(index)
     }
 
-    override fun getSymbols(index: Int) : Symbol {
-        return symbolLocalDataSource.getSymbols(index)
+    override fun getSymbols() : Array<Symbol> {
+        return symbolLocalDataSource.getSymbols()
     }
 
-    override fun setSymbolsLevel(index: Int, level: String) {
-        symbolLocalDataSource.setSymbolsLevel(index, level)
+    override fun getSymbolsSize() : Int {
+        return symbolLocalDataSource.getSymbolsSize()
     }
 
-    override fun setSymbolsCount(index: Int, count: String) {
-        symbolLocalDataSource.setSymbolsCount(index, count)
+    override fun getSymbol(index: Int): Symbol {
+        return symbolLocalDataSource.getSymbol(index)
     }
 
-    override fun setSymbolsExtra(index: Int, mini: String) {
-        symbolLocalDataSource.setSymbolsExtra(index, mini)
+    override fun getSymbolChecked(index: Int): Boolean {
+        return symbolLocalDataSource.getSymbolChecked(index)
+    }
+
+    override fun setSymbolLevel(index: Int, level: String) {
+        symbolLocalDataSource.setSymbolLevel(index, level)
+    }
+
+    override fun setSymbolCount(index: Int, count: String) {
+        symbolLocalDataSource.setSymbolCount(index, count)
+    }
+
+    override fun setSymbolExtra(index: Int, mini: String) {
+        symbolLocalDataSource.setSymbolExtra(index, mini)
+    }
+
+    override fun setSymbolCheked(index: Int, boolean: Boolean) {
+        symbolLocalDataSource.setSymbolCheked(index, boolean)
     }
 }

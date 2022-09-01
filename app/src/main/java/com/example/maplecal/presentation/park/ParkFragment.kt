@@ -1,4 +1,4 @@
-package com.example.maplecal.park
+package com.example.maplecal.presentation.park
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,10 +10,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.maplecal.R
 import com.example.maplecal.domain.model.Park
 import com.example.maplecal.databinding.FragmentParkBinding
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class ParkFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
     private lateinit var binding: FragmentParkBinding
     private lateinit var adapter: ParkRecyclerViewAdapter
+    @Inject lateinit var parkViewModel: ParkViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +30,9 @@ class ParkFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView(savedInstanceState)
+        parkViewModel.parkLiveData.observe(viewLifecycleOwner) {
+            (binding.recyclerView.adapter as ParkRecyclerViewAdapter).setData(it)
+        }
     }
 
     private fun initView(savedInstanceState: Bundle?) {
@@ -35,17 +42,15 @@ class ParkFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
     }
 
     private fun initParkRecyclerView(savedInstanceState: Bundle?) {
-        adapter = ParkRecyclerViewAdapter()
-        if (savedInstanceState != null) {
-            val data = mutableListOf<Park>()
-            val saveData = savedInstanceState.getParcelableArrayList<Park>("parkData")
-            if (saveData != null) {
-                for (i in 0 until saveData.size) {
-                    data.add(saveData[i])
-                }
+        adapter = ParkRecyclerViewAdapter(
+            emptyList(),
+            parkCountChangeListener = { index, parkCount ->
+                parkViewModel.setParkCount(index, parkCount)
+            },
+            parkPointChangeListener = { index, parkPoint ->
+                parkViewModel.setParkPoint(index, parkPoint)
             }
-            adapter.datalist = data
-        }
+        )
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.adapter = adapter
     }
@@ -73,25 +78,20 @@ class ParkFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
         }
 
         when (isChecked) {
-            true -> adapter.addItem(parks[park], park)
-            false -> adapter.removeItem(park)
+            true -> parkViewModel.setParkChecked(park, true)
+            false -> parkViewModel.setParkChecked(park, false)
         }
     }
 
     fun initButton() {
         binding.calButton.setOnClickListener {
             val bundle = Bundle()
-            bundle.putParcelableArrayList("park", ArrayList(adapter.datalist))
+            bundle.putParcelableArrayList("park", ArrayList(parkViewModel.getParkResult()))
             val dialog = ParkDialog()
             dialog.isCancelable = false
             dialog.arguments = bundle
             dialog.show(childFragmentManager, "Park Dialog")
         }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putParcelableArrayList("parkData", ArrayList(adapter.datalist))
     }
 
     companion object {

@@ -1,7 +1,5 @@
 package com.example.maplecal.domain
 
-import com.example.maplecal.model.getRequestExp
-
 class GetGrowthUsecase(
     private val growthRepository: GrowthRepository
 ) {

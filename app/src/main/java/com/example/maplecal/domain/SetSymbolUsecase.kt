@@ -1,17 +1,28 @@
 package com.example.maplecal.domain
 
-class SetSymbolUsecase(
+import dagger.hilt.android.scopes.ActivityScoped
+import dagger.hilt.android.scopes.FragmentScoped
+import dagger.hilt.android.scopes.ViewModelScoped
+import javax.inject.Inject
+import javax.inject.Singleton
+
+@Singleton
+class SetSymbolUsecase @Inject constructor(
     private val symbolRepository: SymbolRepository
 ) {
-    fun setSymbolsLevel(index: Int, level: String) {
-        symbolRepository.setSymbolsLevel(index, level)
+    fun setSymbolLevel(index: Int, level: String) {
+        symbolRepository.setSymbolLevel(index, level)
     }
 
-    fun setSymbolsCount(index: Int, count: String) {
-        symbolRepository.setSymbolsCount(index, count)
+    fun setSymbolCount(index: Int, count: String) {
+        symbolRepository.setSymbolCount(index, count)
     }
 
-    fun setSymbolsExtra(index: Int, mini: String) {
-        symbolRepository.setSymbolsExtra(index, mini)
+    fun setSymbolExtra(index: Int, mini: String) {
+        symbolRepository.setSymbolExtra(index, mini)
+    }
+
+    fun setSymbolCheked(index: Int, boolean: Boolean) {
+        symbolRepository.setSymbolCheked(index, boolean)
     }
 }

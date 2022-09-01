@@ -1,19 +1,16 @@
-package com.example.maplecal.hyper
-
+package com.example.maplecal.presentation.hyper
+/*
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.maplecal.ItemSelectedListener
 import com.example.maplecal.domain.model.Hyper
 import com.example.maplecal.databinding.FragmentHyperBinding
-import com.example.maplecal.model.getGainPoint
 import com.example.maplecal.model.getHyper
 import com.example.maplecal.model.getHyperState
-import com.example.maplecal.model.hyperPoint
 import java.lang.NumberFormatException
 import java.lang.StringBuilder
 
@@ -115,4 +112,4 @@ class HyperFragment : Fragment(), ItemSelectedListener {
         @JvmStatic
         fun newInstance() = HyperFragment()
     }
-}
+}*/

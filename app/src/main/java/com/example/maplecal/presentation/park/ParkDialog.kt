@@ -1,4 +1,4 @@
-package com.example.maplecal.park
+package com.example.maplecal.presentation.park
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,7 +21,7 @@ class ParkDialog : DialogFragment() {
     ): View? {
         binding = ParkDialogBinding.inflate(layoutInflater)
         arguments?.let {
-            it.getParcelableArrayList<Park>("park").toString()
+            it.getParcelableArrayList<ParkResult>("park").toString()
         }
         return binding.root
     }
@@ -44,8 +44,8 @@ class ParkDialog : DialogFragment() {
     private fun initParkRecyclerView() {
         adapter = ParkResultRecyclerViewAdapter()
         arguments?.let {
-            val data = mutableListOf<Park>()
-            val saveData = it.getParcelableArrayList<Park>("park")
+            val data = mutableListOf<ParkResult>()
+            val saveData = it.getParcelableArrayList<ParkResult>("park")
             if (saveData != null) {
                 for (i in 0 until saveData.size) {
                     data.add(saveData[i])

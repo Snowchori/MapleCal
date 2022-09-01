@@ -10,5 +10,6 @@ data class Symbol(
     val symbolExtra: String,
     var symbolLevel: String,
     var symbolCount: String,
-    var symbolMini: String
+    var symbolMini: String,
+    var symbolCheked: Boolean
 ) : Parcelable

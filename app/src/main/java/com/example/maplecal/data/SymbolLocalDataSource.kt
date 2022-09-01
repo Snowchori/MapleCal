@@ -1,8 +1,14 @@
 package com.example.maplecal.data
 
 import com.example.maplecal.domain.model.Symbol
+import dagger.hilt.android.scopes.ActivityScoped
+import dagger.hilt.android.scopes.FragmentScoped
+import dagger.hilt.android.scopes.ViewModelScoped
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class SymbolLocalDataSource {
+@Singleton
+class SymbolLocalDataSource @Inject constructor(){
     private val arcaneGrowth = listOf(
         0, 12, 15, 20, 27, 36, 47, 60, 75, 92, 111, 132, 155, 180,
         207, 236, 267, 300, 335, 372
@@ -57,14 +63,14 @@ class SymbolLocalDataSource {
     )
 
     private val symbols = arrayOf(
-        Symbol(0, "소멸의 여로", "미니게임\n(0 or 1)", "1", "1", "1"),
-        Symbol(1, "츄츄 아일랜드", "미니게임\n(0 or 1)", "1", "1", "1"),
-        Symbol(2, "레헬른", "드브 층수", "1", "1", "0"),
-        Symbol(3, "아르카나", "스세 점수", "1", "1", "30000"),
-        Symbol(4, "모라스", "미니게임\n(0 or 1)", "1", "1", "1"),
-        Symbol(5, "에스페라", "미니게임\n(0 or 1)", "1", "1", "1"),
-        Symbol(6, "세르니움", "세르니움(후)\n(0 or 1)", "1", "1", "1"),
-        Symbol(7, "아크르스", "", "1", "1", "0")
+        Symbol(0, "소멸의 여로", "미니게임\n(0 or 1)", "1", "1", "1", false),
+        Symbol(1, "츄츄 아일랜드", "미니게임\n(0 or 1)", "1", "1", "1", false),
+        Symbol(2, "레헬른", "드브 층수", "1", "1", "0", false),
+        Symbol(3, "아르카나", "스세 점수", "1", "1", "30000", false),
+        Symbol(4, "모라스", "미니게임\n(0 or 1)", "1", "1", "1", false),
+        Symbol(5, "에스페라", "미니게임\n(0 or 1)", "1", "1", "1", false),
+        Symbol(6, "세르니움", "세르니움(후)\n(0 or 1)", "1", "1", "1", false),
+        Symbol(7, "아크르스", "", "1", "1", "0", false)
     )
 
     fun getArcaneGrowth(index:Int) : Int {
@@ -107,19 +113,35 @@ class SymbolLocalDataSource {
         return authenticArx[index]
     }
 
-    fun getSymbols(index: Int) : Symbol {
+    fun getSymbols() : Array<Symbol> {
+        return symbols
+    }
+
+    fun getSymbolsSize() : Int {
+        return symbols.size
+    }
+
+    fun getSymbol(index: Int) : Symbol {
         return symbols[index]
     }
 
-    fun setSymbolsLevel(index: Int, level: String) {
+    fun getSymbolChecked(index: Int) : Boolean {
+        return symbols[index].symbolCheked
+    }
+
+    fun setSymbolLevel(index: Int, level: String) {
         symbols[index].symbolLevel = level
     }
 
-    fun setSymbolsCount(index: Int, count: String) {
+    fun setSymbolCount(index: Int, count: String) {
         symbols[index].symbolCount = count
     }
 
-    fun setSymbolsExtra(index: Int, mini: String) {
+    fun setSymbolExtra(index: Int, mini: String) {
         symbols[index].symbolMini = mini
+    }
+
+    fun setSymbolCheked(index: Int, boolean: Boolean) {
+        symbols[index].symbolCheked = boolean
     }
 }

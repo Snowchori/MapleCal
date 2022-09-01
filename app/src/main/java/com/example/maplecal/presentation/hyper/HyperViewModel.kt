@@ -1,9 +1,9 @@
-package com.example.maplecal.hyper
+package com.example.maplecal.presentation.hyper
 
 import com.example.maplecal.domain.GetHyperUsecase
 import com.example.maplecal.domain.SetHyperUsecase
 import com.example.maplecal.util.getGainPoint
-
+/*
 class HyperViewModel(
     private val getHyperUsecase: GetHyperUsecase,
     private val setHyperUsecase: SetHyperUsecase
@@ -17,4 +17,4 @@ class HyperViewModel(
             (getGainPoint(level) - usePoint).toString()
         }
     }
-}
+}*/

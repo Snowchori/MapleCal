@@ -1,22 +1,27 @@
-package com.example.maplecal.park
+package com.example.maplecal.presentation.park
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.maplecal.R
 import com.example.maplecal.domain.model.Park
 import com.example.maplecal.databinding.ItemRecyclerParkResultBinding
-import com.example.maplecal.parks
 import com.example.maplecal.util.getPoint
 import com.example.maplecal.util.getTime
-import java.text.DateFormat
-import java.text.DecimalFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
 class ParkResultRecyclerViewAdapter :
     RecyclerView.Adapter<ParkResultRecyclerViewAdapter.MyViewHolder>() {
-    var datalist = mutableListOf<Park>()
+    var datalist = mutableListOf<ParkResult>()
+
+    val parks = listOf(
+        R.drawable.sunday,
+        R.drawable.monday,
+        R.drawable.tuesday,
+        R.drawable.wednesday,
+        R.drawable.thursday,
+        R.drawable.friday,
+        R.drawable.saturday
+    )
 
     class MyViewHolder(val binding: ItemRecyclerParkResultBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -33,17 +38,9 @@ class ParkResultRecyclerViewAdapter :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.binding.parkImage.setImageResource(parks[datalist[position].parkIndex])
         holder.binding.parkName.text = datalist[position].parkName
-        holder.binding.requestPoint.text =
-            getPoint(datalist[position].parkCount.toInt(), datalist[position].parkPoint.toInt())
-        holder.binding.parkGain.text = getTime(
-            datalist[position].parkIndex,
-            datalist[position].parkCount.toInt(), datalist[position].parkPoint.toInt()
-        )
+        holder.binding.requestPoint.text = datalist[position].parkPoint
+        holder.binding.parkGain.text = datalist[position].parkTime
     }
 
     override fun getItemCount(): Int = datalist.size
-
-
-    // 계산하는 유틸로
-
 }

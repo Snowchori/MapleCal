@@ -6,8 +6,6 @@ import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
-
-
 fun getGainPoint(level: Int): Int {
     val one = level % 10
     return when (level) {
@@ -67,7 +65,7 @@ fun getPoint(cnt: Int, point: Int): String {
 
 @SuppressLint("SimpleDateFormat")
 fun getTime(ind: Int, cnt: Int, point: Int): String {
-    val remain = 78 - cnt
+    val remain = 77 - cnt
     val week = remain / (2 + point)
 
     val cal = Calendar.getInstance()

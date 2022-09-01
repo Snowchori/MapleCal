@@ -1,13 +1,21 @@
 package com.example.maplecal.domain
 
-class SetParkUsecase(
+import javax.inject.Inject
+import javax.inject.Singleton
+
+@Singleton
+class SetParkUsecase @Inject constructor(
     private val parkRepository: ParkRepository
 ) {
-    fun setParksCount(index: Int, count: String) {
-        parkRepository.setParksCount(index, count)
+    fun setParkCount(index: Int, count: String) {
+        parkRepository.setParkCount(index, count)
     }
 
-    fun setParksPoint(index: Int, point: String) {
-        parkRepository.setParksPoint(index, point)
+    fun setParkPoint(index: Int, point: String) {
+        parkRepository.setParkPoint(index, point)
+    }
+
+    fun setParkChecked(index:Int, boolean: Boolean) {
+        parkRepository.setParkChecked(index, boolean)
     }
 }

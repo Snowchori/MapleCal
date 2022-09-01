@@ -1,4 +1,4 @@
-package com.example.maplecal.symbol
+package com.example.maplecal.presentation.symbol
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,16 +8,15 @@ import android.view.ViewGroup
 import android.widget.CompoundButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.maplecal.*
-import com.example.maplecal.domain.model.Symbol
 import com.example.maplecal.databinding.FragmentSymbolBinding
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SymbolFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
     private lateinit var binding: FragmentSymbolBinding
     private lateinit var adapter: SymbolRecyclerViewAdapter
-
-    private val baseUrl = "https://maplestory.nexon.com"
+    @Inject lateinit var symbolViewModel: SymbolViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,27 +28,28 @@ class SymbolFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView(savedInstanceState)
+        initView()
+        symbolViewModel.symbolLiveData.observe(viewLifecycleOwner) {
+            (binding.recyclerView.adapter as SymbolRecyclerViewAdapter).setData(it)
+        }
     }
 
-    private fun initView(savedInstanceState: Bundle?) {
-        initSymbolRecyclerView(savedInstanceState)
+    private fun initView() {
+        initSymbolRecyclerView()
         initSymbolCheckBox()
         initButton()
     }
 
-    private fun initSymbolRecyclerView(savedInstanceState: Bundle?) {
-        adapter = SymbolRecyclerViewAdapter()
-        if (savedInstanceState != null) {
-            val data = mutableListOf<Symbol>()
-            val saveData = savedInstanceState.getParcelableArrayList<Symbol>("symbolData")
-            if (saveData != null) {
-                for (i in 0 until saveData.size) {
-                    data.add(saveData[i])
-                }
-            }
-            adapter.datalist = data
-        }
+    private fun initSymbolRecyclerView() {
+        adapter = SymbolRecyclerViewAdapter(
+            emptyList(),
+            symbolLevelChangeListener = { index, symbolLevel ->
+                symbolViewModel.setSymbolLevel(index, symbolLevel)
+        }, symbolCountChangeListener = { index, symbolCount ->
+                symbolViewModel.setSymbolCount(index, symbolCount)
+        }, symbolMiniChangeListener = { index, symbolMini ->
+                symbolViewModel.setSymbolExtra(index, symbolMini)
+        })
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.adapter = adapter
     }
@@ -79,25 +79,20 @@ class SymbolFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
         }
 
         when (isChecked) {
-            true -> adapter.addItem(symbols[symbol], symbol)
-            false -> adapter.removeItem(symbol)
+            true -> symbolViewModel.setSymbolCheked(symbol, true)
+            false -> symbolViewModel.setSymbolCheked(symbol, false)
         }
     }
 
     fun initButton() {
         binding.calButton.setOnClickListener {
             val bundle = Bundle()
-            bundle.putParcelableArrayList("symbol", ArrayList(adapter.datalist))
+            bundle.putParcelableArrayList("symbol", ArrayList(symbolViewModel.getSymbolResult()))
             val dialog = SymbolDialog()
             dialog.isCancelable = false
             dialog.arguments = bundle
             dialog.show(childFragmentManager, "Symbol Dialog")
         }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putParcelableArrayList("symbolData", ArrayList(adapter.datalist))
     }
 
     companion object {

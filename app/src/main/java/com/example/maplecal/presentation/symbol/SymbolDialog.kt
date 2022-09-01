@@ -1,4 +1,4 @@
-package com.example.maplecal.symbol
+package com.example.maplecal.presentation.symbol
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -44,8 +44,8 @@ class SymbolDialog : DialogFragment() {
     private fun initSymbolRecyclerView() {
         adapter = SymbolResultRecyclerViewAdapter()
         arguments?.let {
-            val data = mutableListOf<Symbol>()
-            val saveData = it.getParcelableArrayList<Symbol>("symbol")
+            val data = mutableListOf<SymbolResult>()
+            val saveData = it.getParcelableArrayList<SymbolResult>("symbol")
             if (saveData != null) {
                 for (i in 0 until saveData.size) {
                     data.add(saveData[i])

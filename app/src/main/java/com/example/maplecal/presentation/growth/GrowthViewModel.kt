@@ -1,4 +1,4 @@
-package com.example.maplecal.growth
+package com.example.maplecal.presentation.growth
 
 import com.example.maplecal.domain.GetGrowthUsecase
 
