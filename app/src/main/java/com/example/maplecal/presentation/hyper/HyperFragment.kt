@@ -1,109 +1,71 @@
 package com.example.maplecal.presentation.hyper
-/*
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.maplecal.ItemSelectedListener
+import com.example.maplecal.R
 import com.example.maplecal.domain.model.Hyper
 import com.example.maplecal.databinding.FragmentHyperBinding
-import com.example.maplecal.model.getHyper
-import com.example.maplecal.model.getHyperState
+import com.example.maplecal.databinding.FragmentParkBinding
+import com.example.maplecal.util.getHyperState
+import dagger.hilt.android.AndroidEntryPoint
 import java.lang.NumberFormatException
 import java.lang.StringBuilder
+import javax.inject.Inject
 
-class HyperFragment : Fragment(), ItemSelectedListener {
+@AndroidEntryPoint
+class HyperFragment : Fragment() {
     private lateinit var binding: FragmentHyperBinding
     private lateinit var adapter: HyperRecyclerViewAdapter
-    private lateinit var hypers: Array<Hyper>
-    private var characterLevel: Int = 0
+    private val hyperViewModel: HyperViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHyperBinding.inflate(layoutInflater)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_hyper, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView(savedInstanceState)
+        initView()
+        hyperViewModel.hyperLiveData.observe(viewLifecycleOwner) {
+            (binding.recyclerView.adapter as HyperRecyclerViewAdapter).setData(it)
+        }
+        hyperViewModel.levelLiveData.observe(viewLifecycleOwner) {
+            hyperViewModel.getRemainPoint(it)
+        }
+        binding.lifecycleOwner = this
+        binding.viewModel = hyperViewModel
     }
 
-    private fun initView(savedInstanceState: Bundle?) {
-        initHyperRecyclerView(savedInstanceState)
+    private fun initView() {
+        initHyperRecyclerView()
         initButton()
-        binding.levelEdit.addTextChangedListener {
-            try {
-                characterLevel = Integer.parseInt(it.toString())
-                binding.pointText.setText(getRemainPoint(characterLevel))
-            } catch (e: NumberFormatException) {
-            }
-        }
-        if (savedInstanceState != null) {
-            val level = savedInstanceState.getString("level")
-            if (level != null) binding.levelEdit.setText(level)
-        }
     }
 
-    private fun initHyperRecyclerView(savedInstanceState: Bundle?) {
-        adapter = HyperRecyclerViewAdapter(this, requireContext())
-        hypers = getHyper()
-        val data = mutableListOf<Hyper>()
-        if (savedInstanceState != null) {
-            val saveData = savedInstanceState.getParcelableArrayList<Hyper>("hyperData")
-            if (saveData != null) {
-                for (i in 0 until saveData.size) {
-                    data.add(saveData[i])
-                }
-            }
-        } else {
-            for (i in 0 until hypers.size) {
-                data.add(hypers[i])
-            }
-        }
-        adapter.datalist = data
+    private fun initHyperRecyclerView() {
+        adapter = HyperRecyclerViewAdapter(
+            hyperViewModel.getHypers(),
+            hyperCountChangeListener = { index, hyperCount ->
+                hyperViewModel.setHyperCount(index, hyperCount)
+            },
+            requireContext())
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
         binding.recyclerView.adapter = adapter
     }
 
     private fun initButton() {
         binding.initButton.setOnClickListener {
-            val data = mutableListOf<Hyper>()
-            hypers = getHyper()
-            for (i in 0 until hypers.size) {
-                data.add(hypers[i])
-            }
-            adapter.datalist = data
-            binding.recyclerView.adapter?.notifyDataSetChanged()
+            hyperViewModel.setInit()
         }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putParcelableArrayList("hyperData", ArrayList(adapter.datalist))
-        outState.putString("level", binding.levelEdit.text.toString())
-    }
-
-    override fun onHyperSelected(data: MutableList<Hyper>) {
-        binding.pointText.setText(getRemainPoint(characterLevel))
-        var hyperText = StringBuilder()
-        for (i in 0 until adapter.datalist.size) {
-            if (adapter.datalist[i].hyperCount > 0) {
-                hyperText.append(
-                    "${adapter.datalist[i].hyperName} ${
-                        getHyperState(
-                            adapter.datalist[i].hyperIndex,
-                            adapter.datalist[i].hyperCount
-                        )
-                    }\n"
-                )
-            }
-        }
-        binding.hyperResult.setText(hyperText.toString())
     }
 
     companion object {
@@ -112,4 +74,4 @@ class HyperFragment : Fragment(), ItemSelectedListener {
         @JvmStatic
         fun newInstance() = HyperFragment()
     }
-}*/
+}

@@ -12,9 +12,12 @@ import com.example.maplecal.R
 import com.example.maplecal.domain.model.Hyper
 import com.example.maplecal.databinding.ItemRecyclerHyperBinding
 
-class HyperRecyclerViewAdapter(private val listener: ItemSelectedListener, val context: Context) :
+class HyperRecyclerViewAdapter(
+    private var dataSet: List<Hyper>,
+    val hyperCountChangeListener: (Int, String) -> Unit,
+    val context: Context
+    ) :
     RecyclerView.Adapter<HyperRecyclerViewAdapter.MyViewHolder>() {
-    var datalist = mutableListOf<Hyper>()
 
     inner class MyViewHolder(val binding: ItemRecyclerHyperBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -26,8 +29,7 @@ class HyperRecyclerViewAdapter(private val listener: ItemSelectedListener, val c
                     position: Int,
                     id: Long
                 ) {
-                    datalist[adapterPosition].hyperCount = position
-                    listener.onHyperSelected(datalist)
+                    hyperCountChangeListener(adapterPosition, position.toString())
                 }
 
                 override fun onNothingSelected(p0: AdapterView<*>?) = Unit
@@ -43,14 +45,19 @@ class HyperRecyclerViewAdapter(private val listener: ItemSelectedListener, val c
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.binding.status.text = datalist[position].hyperName
+        holder.binding.status.text = dataSet[position].hyperName
         holder.binding.spinner.adapter = ArrayAdapter.createFromResource(
             context,
             R.array.numberList,
             android.R.layout.simple_spinner_item
         )
-        holder.binding.spinner.setSelection(datalist[position].hyperCount)
+        holder.binding.spinner.setSelection(dataSet[position].hyperCount.toInt())
     }
 
-    override fun getItemCount(): Int = datalist.size
+    override fun getItemCount(): Int = dataSet.size
+
+    fun setData(newData:List<Hyper>) {
+        dataSet = newData
+        notifyDataSetChanged()
+    }
 }

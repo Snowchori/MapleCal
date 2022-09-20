@@ -7,5 +7,5 @@ import kotlinx.android.parcel.Parcelize
 data class Hyper(
     val hyperIndex: Int,
     val hyperName: String,
-    var hyperCount: Int
+    var hyperCount: String
 ) : Parcelable

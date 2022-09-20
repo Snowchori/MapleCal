@@ -9,11 +9,12 @@ import com.example.maplecal.databinding.ItemRecyclerSymbolBinding
 import com.example.maplecal.domain.model.Symbol
 
 class SymbolRecyclerViewAdapter(
-    private var dataSet: List<Symbol>,
     val symbolLevelChangeListener: (Int, String) -> Unit,
     val symbolCountChangeListener: (Int, String) -> Unit,
     val symbolMiniChangeListener: (Int, String) -> Unit
 ) : RecyclerView.Adapter<SymbolRecyclerViewAdapter.MyViewHolder>() {
+
+    private var dataSet : List<Symbol> = emptyList()
 
     private val symbols = listOf(
         R.drawable.longways,

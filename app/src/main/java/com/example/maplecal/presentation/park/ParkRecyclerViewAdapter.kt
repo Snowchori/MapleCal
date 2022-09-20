@@ -7,13 +7,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.maplecal.R
 import com.example.maplecal.domain.model.Park
 import com.example.maplecal.databinding.ItemRecyclerParkBinding
+import com.example.maplecal.domain.model.Symbol
 
 
 class ParkRecyclerViewAdapter(
-    private var dataSet: List<Park>,
     val parkCountChangeListener: (Int, String) -> Unit,
     val parkPointChangeListener: (Int, String) -> Unit
 ) : RecyclerView.Adapter<ParkRecyclerViewAdapter.MyViewHolder>() {
+
+    private var dataSet : List<Park> = emptyList()
 
     val parks = listOf(
         R.drawable.sunday,

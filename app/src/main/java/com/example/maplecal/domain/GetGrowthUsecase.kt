@@ -1,6 +1,10 @@
 package com.example.maplecal.domain
 
-class GetGrowthUsecase(
+import javax.inject.Inject
+import javax.inject.Singleton
+
+@Singleton
+class GetGrowthUsecase @Inject constructor(
     private val growthRepository: GrowthRepository
 ) {
     suspend fun getExpResult(level: Int, percent: Double, data: MutableList<Int>): String {
@@ -21,5 +25,9 @@ class GetGrowthUsecase(
         }
         val expPercent: Double = exp * 100 / requestExp.toDouble()
         return "$lev 레벨 " + String.format("%.3f", expPercent) + "%"
+    }
+
+    suspend fun getExpLevel(nickname: String) : Pair<String, Double> {
+        return growthRepository.getExpLevel(nickname)
     }
 }

@@ -1,11 +1,13 @@
 package com.example.maplecal.presentation.symbol
 
 import android.annotation.SuppressLint
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.maplecal.domain.GetSymbolUsecase
 import com.example.maplecal.domain.SetSymbolUsecase
 import com.example.maplecal.domain.model.Symbol
+import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.scopes.ViewModelScoped
 import java.text.DateFormat
 import java.text.DecimalFormat
@@ -13,15 +15,18 @@ import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
+@HiltViewModel
 class SymbolViewModel @Inject constructor(
     private val getSymbolUsecase: GetSymbolUsecase,
     private val setSymbolUsecase: SetSymbolUsecase
 ) : ViewModel() {
 
-    val symbolLiveData = MutableLiveData<List<Symbol>>()
+    var _symbolLiveData = MutableLiveData<List<Symbol>>()
+    val symbolLiveData : LiveData<List<Symbol>>
+    get() = _symbolLiveData
 
     fun updateSymbols() {
-        symbolLiveData.value = getSymbolUsecase.getSymbols()
+        _symbolLiveData.value = getSymbolUsecase.getSymbols()
     }
 
     fun setSymbolLevel(index: Int, level: String) {

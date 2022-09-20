@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.maplecal.R
 import com.example.maplecal.domain.model.Park
@@ -17,13 +19,13 @@ import javax.inject.Inject
 class ParkFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
     private lateinit var binding: FragmentParkBinding
     private lateinit var adapter: ParkRecyclerViewAdapter
-    @Inject lateinit var parkViewModel: ParkViewModel
+    private val parkViewModel: ParkViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentParkBinding.inflate(layoutInflater)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_park, container, false)
         return binding.root
     }
 
@@ -33,6 +35,7 @@ class ParkFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
         parkViewModel.parkLiveData.observe(viewLifecycleOwner) {
             (binding.recyclerView.adapter as ParkRecyclerViewAdapter).setData(it)
         }
+        binding.lifecycleOwner = this
     }
 
     private fun initView(savedInstanceState: Bundle?) {
@@ -43,7 +46,6 @@ class ParkFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
 
     private fun initParkRecyclerView(savedInstanceState: Bundle?) {
         adapter = ParkRecyclerViewAdapter(
-            emptyList(),
             parkCountChangeListener = { index, parkCount ->
                 parkViewModel.setParkCount(index, parkCount)
             },

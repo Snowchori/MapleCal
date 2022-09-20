@@ -1,111 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context=".presentation.park.ParkFragment">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <GridLayout
-            android:id="@+id/gridLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:background="@color/white"
-            android:columnCount="3"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <CheckBox
-                android:id="@+id/park_sun"
+            <GridLayout
+                android:id="@+id/gridLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:drawableStart="@drawable/sunday"
-                android:text="@string/sun" />
+                android:layout_marginStart="60dp"
+                android:background="@color/white"
+                android:columnCount="3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <CheckBox
-                android:id="@+id/park_mon"
+                <CheckBox
+                    android:id="@+id/park_sun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:drawableStart="@drawable/sunday"
+                    android:text="@string/sun" />
+
+                <CheckBox
+                    android:id="@+id/park_mon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:drawableStart="@drawable/monday"
+                    android:text="@string/mon" />
+
+                <CheckBox
+                    android:id="@+id/park_tue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:drawableStart="@drawable/tuesday"
+                    android:text="@string/tue" />
+
+                <CheckBox
+                    android:id="@+id/park_wed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:drawableStart="@drawable/wednesday"
+                    android:text="@string/wed" />
+
+                <CheckBox
+                    android:id="@+id/park_thu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:drawableStart="@drawable/thursday"
+                    android:text="@string/thu" />
+
+                <CheckBox
+                    android:id="@+id/park_fri"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:drawableStart="@drawable/friday"
+                    android:text="@string/fri" />
+
+                <CheckBox
+                    android:id="@+id/park_sat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:drawableStart="@drawable/saturday"
+                    android:text="@string/sat" />
+
+            </GridLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:background="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/cal_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/gridLayout"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/cal_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:drawableStart="@drawable/monday"
-                android:text="@string/mon" />
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/skyblue"
+                android:text="@string/calculate"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/gridLayout"
+                app:layout_constraintTop_toBottomOf="@id/recyclerView" />
 
-            <CheckBox
-                android:id="@+id/park_tue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:drawableStart="@drawable/tuesday"
-                android:text="@string/tue" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <CheckBox
-                android:id="@+id/park_wed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:drawableStart="@drawable/wednesday"
-                android:text="@string/wed" />
-
-            <CheckBox
-                android:id="@+id/park_thu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:drawableStart="@drawable/thursday"
-                android:text="@string/thu" />
-
-            <CheckBox
-                android:id="@+id/park_fri"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:drawableStart="@drawable/friday"
-                android:text="@string/fri" />
-
-            <CheckBox
-                android:id="@+id/park_sat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:drawableStart="@drawable/saturday"
-                android:text="@string/sat" />
-
-        </GridLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="30dp"
-            android:background="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/cal_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/gridLayout"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/cal_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:background="@color/skyblue"
-            android:text="@string/calculate"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/gridLayout"
-            app:layout_constraintTop_toBottomOf="@id/recyclerView" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</FrameLayout>
+    </FrameLayout>
+</layout>

@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.maplecal.*
 import com.example.maplecal.databinding.FragmentSymbolBinding
@@ -16,13 +18,13 @@ import javax.inject.Inject
 class SymbolFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
     private lateinit var binding: FragmentSymbolBinding
     private lateinit var adapter: SymbolRecyclerViewAdapter
-    @Inject lateinit var symbolViewModel: SymbolViewModel
+    private val symbolViewModel: SymbolViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSymbolBinding.inflate(layoutInflater)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_symbol, container, false)
         return binding.root
     }
 
@@ -32,6 +34,7 @@ class SymbolFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
         symbolViewModel.symbolLiveData.observe(viewLifecycleOwner) {
             (binding.recyclerView.adapter as SymbolRecyclerViewAdapter).setData(it)
         }
+        binding.lifecycleOwner = this
     }
 
     private fun initView() {
@@ -42,7 +45,6 @@ class SymbolFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
 
     private fun initSymbolRecyclerView() {
         adapter = SymbolRecyclerViewAdapter(
-            emptyList(),
             symbolLevelChangeListener = { index, symbolLevel ->
                 symbolViewModel.setSymbolLevel(index, symbolLevel)
         }, symbolCountChangeListener = { index, symbolCount ->
