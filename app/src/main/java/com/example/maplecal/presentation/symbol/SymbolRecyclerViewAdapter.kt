@@ -14,7 +14,7 @@ class SymbolRecyclerViewAdapter(
     val symbolMiniChangeListener: (Int, String) -> Unit
 ) : RecyclerView.Adapter<SymbolRecyclerViewAdapter.MyViewHolder>() {
 
-    private var dataSet : List<Symbol> = emptyList()
+    private var dataSet: List<Symbol> = emptyList()
 
     private val symbols = listOf(
         R.drawable.longways,
@@ -60,7 +60,7 @@ class SymbolRecyclerViewAdapter(
 
     override fun getItemCount(): Int = dataSet.size
 
-    fun setData(newData:List<Symbol>) {
+    fun setData(newData: List<Symbol>) {
         dataSet = newData
         notifyDataSetChanged()
     }

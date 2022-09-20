@@ -1,5 +1,6 @@
 package com.example.maplecal.data
 
+import com.example.maplecal.data.local.HyperLocalDataSource
 import com.example.maplecal.domain.HyperRepository
 import com.example.maplecal.domain.model.Hyper
 import javax.inject.Inject
@@ -9,15 +10,15 @@ import javax.inject.Singleton
 class HyperRepositoryImpl @Inject constructor(
     private val hyperLocalDataSource: HyperLocalDataSource
 ) : HyperRepository {
-    override fun getHypers() : Array<Hyper> {
+    override fun getHypers(): Array<Hyper> {
         return hyperLocalDataSource.getHypers()
     }
 
-    override fun getHypersSize() : Int {
+    override fun getHypersSize(): Int {
         return hyperLocalDataSource.getHypersSize()
     }
 
-    override fun getHyper(index: Int) : Hyper {
+    override fun getHyper(index: Int): Hyper {
         return hyperLocalDataSource.getHyper(index)
     }
 

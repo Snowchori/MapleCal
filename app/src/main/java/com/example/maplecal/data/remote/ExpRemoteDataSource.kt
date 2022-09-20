@@ -1,9 +1,6 @@
-package com.example.maplecal.data
+package com.example.maplecal.data.remote
 
-import com.example.maplecal.ExpService
-import com.example.maplecal.RetrofitClient
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
 import org.jsoup.Jsoup
@@ -14,7 +11,7 @@ import javax.inject.Singleton
 @Singleton
 class ExpRemoteDataSource @Inject constructor(
     private val expService: ExpService
-){
+) {
     suspend fun getRequestExp(level: Int): Long =
         coroutineScope {
             try {
@@ -30,7 +27,7 @@ class ExpRemoteDataSource @Inject constructor(
             }
         }
 
-    suspend fun getExpLevel(nickname: String) : Pair<String, Double> = withContext(Dispatchers.IO) {
+    suspend fun getExpLevel(nickname: String): Pair<String, Double> = withContext(Dispatchers.IO) {
         var level = "0"
         var exp = 0.0
 

@@ -1,4 +1,4 @@
-package com.example.maplecal.data
+package com.example.maplecal.data.local
 
 import com.example.maplecal.domain.model.Hyper
 import javax.inject.Inject
@@ -7,7 +7,8 @@ import javax.inject.Singleton
 @Singleton
 class HyperLocalDataSource @Inject constructor() {
 
-    private val hyperPoint = listOf(0, 1, 3, 7, 15, 25, 40, 60, 85, 115, 150, 200, 265, 345, 440, 550)
+    private val hyperPoint =
+        listOf(0, 1, 3, 7, 15, 25, 40, 60, 85, 115, 150, 200, 265, 345, 440, 550)
 
     private val hypers = arrayOf(
         Hyper(0, "STR", "0"),
@@ -29,19 +30,19 @@ class HyperLocalDataSource @Inject constructor() {
         Hyper(16, "포스", "0")
     )
 
-    fun getHypers() : Array<Hyper> {
+    fun getHypers(): Array<Hyper> {
         return hypers
     }
 
-    fun getHypersSize() : Int {
+    fun getHypersSize(): Int {
         return hypers.size
     }
 
-    fun getHyper(index: Int) : Hyper {
+    fun getHyper(index: Int): Hyper {
         return hypers[index]
     }
 
-    fun getHyperPoint(index: Int) : Int {
+    fun getHyperPoint(index: Int): Int {
         return hyperPoint[hypers[index].hyperCount.toInt()]
     }
 

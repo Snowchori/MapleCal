@@ -5,9 +5,8 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
 import com.example.maplecal.R
-import com.example.maplecal.domain.model.Park
 import com.example.maplecal.databinding.ItemRecyclerParkBinding
-import com.example.maplecal.domain.model.Symbol
+import com.example.maplecal.domain.model.Park
 
 
 class ParkRecyclerViewAdapter(
@@ -15,7 +14,7 @@ class ParkRecyclerViewAdapter(
     val parkPointChangeListener: (Int, String) -> Unit
 ) : RecyclerView.Adapter<ParkRecyclerViewAdapter.MyViewHolder>() {
 
-    private var dataSet : List<Park> = emptyList()
+    private var dataSet: List<Park> = emptyList()
 
     val parks = listOf(
         R.drawable.sunday,
@@ -54,7 +53,7 @@ class ParkRecyclerViewAdapter(
 
     override fun getItemCount(): Int = dataSet.size
 
-    fun setData(newData:List<Park>) {
+    fun setData(newData: List<Park>) {
         dataSet = newData
         notifyDataSetChanged()
     }

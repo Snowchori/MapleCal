@@ -4,10 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.maplecal.R
-import com.example.maplecal.domain.model.Park
 import com.example.maplecal.databinding.ItemRecyclerParkResultBinding
-import com.example.maplecal.util.getPoint
-import com.example.maplecal.util.getTime
 
 class ParkResultRecyclerViewAdapter :
     RecyclerView.Adapter<ParkResultRecyclerViewAdapter.MyViewHolder>() {

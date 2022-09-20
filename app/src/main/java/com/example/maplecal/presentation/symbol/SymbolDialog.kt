@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.maplecal.domain.model.Symbol
 import com.example.maplecal.databinding.SymbolDialogBinding
+import com.example.maplecal.domain.model.Symbol
 import com.example.maplecal.util.resize
 
 class SymbolDialog : DialogFragment() {

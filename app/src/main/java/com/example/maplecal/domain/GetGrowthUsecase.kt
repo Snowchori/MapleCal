@@ -4,7 +4,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class GetGrowthUsecase @Inject constructor(
+class GetGrowthUseCase @Inject constructor(
     private val growthRepository: GrowthRepository
 ) {
     suspend fun getExpResult(level: Int, percent: Double, data: MutableList<Int>): String {
@@ -27,7 +27,7 @@ class GetGrowthUsecase @Inject constructor(
         return "$lev 레벨 " + String.format("%.3f", expPercent) + "%"
     }
 
-    suspend fun getExpLevel(nickname: String) : Pair<String, Double> {
+    suspend fun getExpLevel(nickname: String): Pair<String, Double> {
         return growthRepository.getExpLevel(nickname)
     }
 }

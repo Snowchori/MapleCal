@@ -6,10 +6,10 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class GetHyperUsecase @Inject constructor(
+class GetHyperUseCase @Inject constructor(
     private val hyperRepository: HyperRepository
 ) {
-    fun getHypers() : MutableList<Hyper> {
+    fun getHypers(): MutableList<Hyper> {
         val hyperList = mutableListOf<Hyper>()
         for (i in 0 until hyperRepository.getHypersSize()) {
             hyperList.add(hyperRepository.getHyper(i))
@@ -18,7 +18,7 @@ class GetHyperUsecase @Inject constructor(
         return hyperList
     }
 
-    fun getHypersSize() : Int {
+    fun getHypersSize(): Int {
         return hyperRepository.getHypersSize()
     }
 

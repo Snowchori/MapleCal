@@ -4,11 +4,10 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.maplecal.domain.GetSymbolUsecase
-import com.example.maplecal.domain.SetSymbolUsecase
+import com.example.maplecal.domain.GetSymbolUseCase
+import com.example.maplecal.domain.SetSymbolUseCase
 import com.example.maplecal.domain.model.Symbol
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.scopes.ViewModelScoped
 import java.text.DateFormat
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
@@ -17,37 +16,37 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SymbolViewModel @Inject constructor(
-    private val getSymbolUsecase: GetSymbolUsecase,
-    private val setSymbolUsecase: SetSymbolUsecase
+    private val getSymbolUseCase: GetSymbolUseCase,
+    private val setSymbolUseCase: SetSymbolUseCase
 ) : ViewModel() {
 
     var _symbolLiveData = MutableLiveData<List<Symbol>>()
-    val symbolLiveData : LiveData<List<Symbol>>
-    get() = _symbolLiveData
+    val symbolLiveData: LiveData<List<Symbol>>
+        get() = _symbolLiveData
 
     fun updateSymbols() {
-        _symbolLiveData.value = getSymbolUsecase.getSymbols()
+        _symbolLiveData.value = getSymbolUseCase.getSymbols()
     }
 
     fun setSymbolLevel(index: Int, level: String) {
-        setSymbolUsecase.setSymbolLevel(index, level)
+        setSymbolUseCase.setSymbolLevel(index, level)
     }
 
     fun setSymbolCount(index: Int, count: String) {
-        setSymbolUsecase.setSymbolCount(index, count)
+        setSymbolUseCase.setSymbolCount(index, count)
     }
 
     fun setSymbolExtra(index: Int, mini: String) {
-        setSymbolUsecase.setSymbolExtra(index, mini)
+        setSymbolUseCase.setSymbolExtra(index, mini)
     }
 
     fun setSymbolCheked(index: Int, boolean: Boolean) {
-        setSymbolUsecase.setSymbolCheked(index, boolean)
+        setSymbolUseCase.setSymbolCheked(index, boolean)
         updateSymbols()
     }
 
-    fun getSymbolResult() : MutableList<SymbolResult> {
-        val symbolLists = getSymbolUsecase.getSymbols()
+    fun getSymbolResult(): MutableList<SymbolResult> {
+        val symbolLists = getSymbolUseCase.getSymbols()
         val symbolResultList = mutableListOf<SymbolResult>()
         for (symbolList in symbolLists) {
             val index = symbolList.symbolIndex
@@ -56,8 +55,12 @@ class SymbolViewModel @Inject constructor(
             val count = symbolList.symbolCount
             val mini = symbolList.symbolMini
             symbolResultList.add(
-                SymbolResult(index, name, getMeso(index, level.toInt()), getTime(index, level.toInt(),
-                count.toInt(), mini.toInt()))
+                SymbolResult(
+                    index, name, getMeso(index, level.toInt()), getTime(
+                        index, level.toInt(),
+                        count.toInt(), mini.toInt()
+                    )
+                )
             )
         }
 
@@ -67,14 +70,14 @@ class SymbolViewModel @Inject constructor(
     private fun getMeso(ind: Int, level: Int): String {
         val dec = DecimalFormat("#,###")
         val meso = when (ind) {
-            0 -> getSymbolUsecase.getArcaneMesoLongway(level, 20)
-            1 -> getSymbolUsecase.getArcaneMesoChuchu(level, 20)
-            2 -> getSymbolUsecase.getArcaneMesoLehlne(level, 20)
-            3 -> getSymbolUsecase.getArcaneMesoArcana(level, 20)
-            4 -> getSymbolUsecase.getArcaneMesoMoras(level, 20)
-            5 -> getSymbolUsecase.getArcaneMesoEspa(level, 20)
-            6 -> getSymbolUsecase.getAuthenticMesoCernium(level, 11)
-            7 -> getSymbolUsecase.getAuthenticMesoArx(level, 11)
+            0 -> getSymbolUseCase.getArcaneMesoLongway(level, 20)
+            1 -> getSymbolUseCase.getArcaneMesoChuchu(level, 20)
+            2 -> getSymbolUseCase.getArcaneMesoLehlne(level, 20)
+            3 -> getSymbolUseCase.getArcaneMesoArcana(level, 20)
+            4 -> getSymbolUseCase.getArcaneMesoMoras(level, 20)
+            5 -> getSymbolUseCase.getArcaneMesoEspa(level, 20)
+            6 -> getSymbolUseCase.getAuthenticMesoCernium(level, 11)
+            7 -> getSymbolUseCase.getAuthenticMesoArx(level, 11)
             else -> -1
         }
 
@@ -84,8 +87,8 @@ class SymbolViewModel @Inject constructor(
     @SuppressLint("SimpleDateFormat")
     private fun getTime(ind: Int, level: Int, count: Int, mini: Int): String {
         var remain: Int = when (ind) {
-            0, 1, 2, 3, 4, 5 -> getSymbolUsecase.getArcaneGrowth(level - 1, 19)
-            6, 7 -> getSymbolUsecase.getAuthenticGrowth(level - 1, 10)
+            0, 1, 2, 3, 4, 5 -> getSymbolUseCase.getArcaneGrowth(level - 1, 19)
+            6, 7 -> getSymbolUseCase.getAuthenticGrowth(level - 1, 10)
             else -> 0
         }
 

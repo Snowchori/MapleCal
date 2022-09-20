@@ -1,18 +1,15 @@
 package com.example.maplecal
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.example.maplecal.presentation.symbol.SymbolFragment
 import com.example.maplecal.databinding.ActivityMainBinding
 import com.example.maplecal.presentation.growth.GrowthFragment
 import com.example.maplecal.presentation.hyper.HyperFragment
 import com.example.maplecal.presentation.park.ParkFragment
-// import com.example.maplecal.presentation.hyper.HyperFragment
-// import com.example.maplecal.presentation.park.ParkFragment
+import com.example.maplecal.presentation.symbol.SymbolFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     private val symbolFragment by lazy { SymbolFragment.newInstance() }
     private val parkFragment by lazy { ParkFragment.newInstance() }
     private val hyperFragment by lazy { HyperFragment.newInstance() }
-    // private val growthFragment by lazy { GrowthFragment.newInstance() }
+    private val growthFragment by lazy { GrowthFragment.newInstance() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,14 +35,6 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             binding.bvnMain.selectedItemId = R.id.symbol_item
         }
-    }
-
-    private fun getGrowthFragment(): GrowthFragment {
-        Log.d("aaaa",
-            (supportFragmentManager.findFragmentByTag(GrowthFragment.TAG)==null).toString()
-        )
-        return supportFragmentManager.findFragmentByTag(GrowthFragment.TAG)
-                as? GrowthFragment?:GrowthFragment.newInstance()
     }
 
     private fun initNavigationBar() {
@@ -63,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                         changeFragment(hyperFragment, HyperFragment.TAG)
                     }
                     R.id.growth_item -> {
-                        changeFragment(getGrowthFragment(), GrowthFragment.TAG)
+                        changeFragment(growthFragment, GrowthFragment.TAG)
                     }
                 }
                 true

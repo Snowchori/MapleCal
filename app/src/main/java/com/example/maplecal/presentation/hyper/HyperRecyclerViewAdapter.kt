@@ -7,16 +7,15 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.maplecal.ItemSelectedListener
 import com.example.maplecal.R
-import com.example.maplecal.domain.model.Hyper
 import com.example.maplecal.databinding.ItemRecyclerHyperBinding
+import com.example.maplecal.domain.model.Hyper
 
 class HyperRecyclerViewAdapter(
     private var dataSet: List<Hyper>,
     val hyperCountChangeListener: (Int, String) -> Unit,
     val context: Context
-    ) :
+) :
     RecyclerView.Adapter<HyperRecyclerViewAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(val binding: ItemRecyclerHyperBinding) :
@@ -56,7 +55,7 @@ class HyperRecyclerViewAdapter(
 
     override fun getItemCount(): Int = dataSet.size
 
-    fun setData(newData:List<Hyper>) {
+    fun setData(newData: List<Hyper>) {
         dataSet = newData
         notifyDataSetChanged()
     }

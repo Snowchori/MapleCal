@@ -1,9 +1,6 @@
-package com.example.maplecal.data
+package com.example.maplecal.data.local
 
 import com.example.maplecal.domain.model.Symbol
-import dagger.hilt.android.scopes.ActivityScoped
-import dagger.hilt.android.scopes.FragmentScoped
-import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 import javax.inject.Singleton
 

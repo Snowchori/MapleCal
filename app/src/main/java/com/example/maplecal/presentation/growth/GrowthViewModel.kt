@@ -1,22 +1,17 @@
 package com.example.maplecal.presentation.growth
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.maplecal.domain.GetGrowthUsecase
+import com.example.maplecal.domain.GetGrowthUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.lang.NumberFormatException
 import javax.inject.Inject
 
 @HiltViewModel
 class GrowthViewModel @Inject constructor(
-    private val getGrowthUsecase: GetGrowthUsecase
-) :ViewModel() {
+    private val getGrowthUseCase: GetGrowthUseCase
+) : ViewModel() {
     var nicknameLiveData = MutableLiveData<String>()
     var levelLiveData = MutableLiveData<String>()
     var expLiveData = MutableLiveData<String>()
@@ -53,8 +48,10 @@ class GrowthViewModel @Inject constructor(
                 limitLiveData.value?.let { data.add(it.toInt()) }
                 resultLiveData.value = levelLiveData.value?.let {
                     expLiveData.value?.let { it1 ->
-                        getGrowthUsecase.getExpResult(it.toInt(),
-                            it1.toDouble(), data)
+                        getGrowthUseCase.getExpResult(
+                            it.toInt(),
+                            it1.toDouble(), data
+                        )
                     }
                 }
             } catch (e: NumberFormatException) {
@@ -65,7 +62,7 @@ class GrowthViewModel @Inject constructor(
 
     fun searchExpLevel() {
         viewModelScope.launch {
-            val expLevel = nicknameLiveData.value?.let { getGrowthUsecase.getExpLevel(it) }
+            val expLevel = nicknameLiveData.value?.let { getGrowthUseCase.getExpLevel(it) }
             if (expLevel != null) {
                 levelLiveData.value = expLevel.first
                 expLiveData.value = String.format("%.3f", expLevel.second)

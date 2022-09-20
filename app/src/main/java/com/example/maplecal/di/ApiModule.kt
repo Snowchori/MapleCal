@@ -1,10 +1,8 @@
 package com.example.maplecal.di
 
-import androidx.compose.ui.unit.Constraints
 import com.example.maplecal.BuildConfig
-import com.example.maplecal.ExpService
-import com.example.maplecal.RetrofitClient
-import com.example.maplecal.data.ExpRemoteDataSource
+import com.example.maplecal.data.remote.ExpRemoteDataSource
+import com.example.maplecal.data.remote.ExpService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,7 +31,7 @@ object ApiModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(okHttpClient: OkHttpClient) : Retrofit {
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
             .baseUrl("http://wachan.me")
@@ -49,7 +47,7 @@ object ApiModule {
 
     @Singleton
     @Provides
-    fun provideExpRemoteDataSource(expService: ExpService) : ExpRemoteDataSource {
+    fun provideExpRemoteDataSource(expService: ExpService): ExpRemoteDataSource {
         return ExpRemoteDataSource(expService)
     }
 }

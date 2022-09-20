@@ -1,13 +1,10 @@
 package com.example.maplecal.domain
 
-import dagger.hilt.android.scopes.ActivityScoped
-import dagger.hilt.android.scopes.FragmentScoped
-import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class SetSymbolUsecase @Inject constructor(
+class SetSymbolUseCase @Inject constructor(
     private val symbolRepository: SymbolRepository
 ) {
     fun setSymbolLevel(index: Int, level: String) {

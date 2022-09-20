@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.maplecal.R
 import com.example.maplecal.databinding.ItemRecyclerSymbolResultBinding
-import com.example.maplecal.domain.model.Symbol
 
 class SymbolResultRecyclerViewAdapter :
     RecyclerView.Adapter<SymbolResultRecyclerViewAdapter.MyViewHolder>() {

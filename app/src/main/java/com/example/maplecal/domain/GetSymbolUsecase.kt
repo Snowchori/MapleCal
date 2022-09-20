@@ -1,14 +1,11 @@
 package com.example.maplecal.domain
 
 import com.example.maplecal.domain.model.Symbol
-import dagger.hilt.android.scopes.ActivityScoped
-import dagger.hilt.android.scopes.FragmentScoped
-import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class GetSymbolUsecase @Inject constructor(
+class GetSymbolUseCase @Inject constructor(
     private val symbolRepository: SymbolRepository
 ) {
     fun getArcaneGrowth(start: Int, end: Int): Int {
@@ -81,7 +78,7 @@ class GetSymbolUsecase @Inject constructor(
         return meso
     }
 
-    fun getSymbols() : MutableList<Symbol> {
+    fun getSymbols(): MutableList<Symbol> {
         val symbolList = mutableListOf<Symbol>()
         for (i in 0 until symbolRepository.getSymbolsSize()) {
             if (symbolRepository.getSymbolChecked(i)) {

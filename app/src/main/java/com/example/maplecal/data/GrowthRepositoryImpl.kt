@@ -1,9 +1,9 @@
 package com.example.maplecal.data
 
+import com.example.maplecal.data.remote.ExpRemoteDataSource
 import com.example.maplecal.domain.GrowthRepository
 import javax.inject.Inject
 import javax.inject.Singleton
-import kotlin.math.exp
 
 @Singleton
 class GrowthRepositoryImpl @Inject constructor(
@@ -12,6 +12,6 @@ class GrowthRepositoryImpl @Inject constructor(
     override suspend fun getRequestExp(level: Int): Long =
         expRemoteDataSource.getRequestExp(level)
 
-    override suspend fun getExpLevel(nickname: String) : Pair<String, Double> =
+    override suspend fun getExpLevel(nickname: String): Pair<String, Double> =
         expRemoteDataSource.getExpLevel(nickname)
 }

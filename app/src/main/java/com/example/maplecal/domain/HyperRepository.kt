@@ -3,13 +3,13 @@ package com.example.maplecal.domain
 import com.example.maplecal.domain.model.Hyper
 
 interface HyperRepository {
-    fun getHypers() : Array<Hyper>
+    fun getHypers(): Array<Hyper>
 
-    fun getHypersSize() : Int
+    fun getHypersSize(): Int
 
-    fun getHyper(index: Int) : Hyper
+    fun getHyper(index: Int): Hyper
 
-    fun getHyperPoint(index: Int) : Int
+    fun getHyperPoint(index: Int): Int
 
     fun getHyperCount(index: Int): Int
 

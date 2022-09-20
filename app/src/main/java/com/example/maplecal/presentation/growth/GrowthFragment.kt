@@ -1,16 +1,15 @@
 package com.example.maplecal.presentation.growth
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.maplecal.R
 import com.example.maplecal.databinding.FragmentGrowthBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.*
 
 @AndroidEntryPoint
 class GrowthFragment : Fragment() {

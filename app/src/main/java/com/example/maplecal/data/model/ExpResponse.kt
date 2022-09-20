@@ -1,4 +1,4 @@
-package com.example.maplecal
+package com.example.maplecal.data.model
 
 import com.google.gson.annotations.SerializedName
 

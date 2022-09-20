@@ -1,11 +1,11 @@
-package com.example.maplecal.data
+package com.example.maplecal.data.local
 
 import com.example.maplecal.domain.model.Park
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class ParkLocalDataSource @Inject constructor(){
+class ParkLocalDataSource @Inject constructor() {
     private val parks = arrayOf(
         Park(0, "일요일 훈장", "0", "0", false),
         Park(1, "월요일 훈장", "0", "0", false),
@@ -16,15 +16,15 @@ class ParkLocalDataSource @Inject constructor(){
         Park(6, "토요일 훈장", "0", "0", false)
     )
 
-    fun getParks() : Array<Park> {
+    fun getParks(): Array<Park> {
         return parks
     }
 
-    fun getParksSize() : Int {
+    fun getParksSize(): Int {
         return parks.size
     }
 
-    fun getPark(index: Int) : Park {
+    fun getPark(index: Int): Park {
         return parks[index]
     }
 
@@ -40,7 +40,7 @@ class ParkLocalDataSource @Inject constructor(){
         parks[index].parkPoint = point
     }
 
-    fun setParkChecked(index:Int, boolean: Boolean) {
+    fun setParkChecked(index: Int, boolean: Boolean) {
         parks[index].parkCheked = boolean
     }
 }
