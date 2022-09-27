@@ -3,32 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/symbol_item"
-        app:showAsAction="ifRoom"
         android:enabled="true"
         android:icon="@drawable/symbol"
-        android:title="@string/symbol" />
+        android:title="@string/symbol"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/park_item"
-        app:showAsAction="ifRoom"
         android:enabled="true"
         android:icon="@drawable/park"
-        android:title="@string/park" />
+        android:title="@string/park"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/hyper_item"
-        app:showAsAction="ifRoom"
         android:enabled="true"
         android:icon="@drawable/ic_launcher_foreground"
-        android:title="@string/hyper" />
-    <item
-        android:id="@+id/train_item"
-        app:showAsAction="ifRoom"
-        android:enabled="true"
-        android:icon="@drawable/train"
-        android:title="@string/train" />
+        android:title="@string/hyper"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/growth_item"
-        app:showAsAction="ifRoom"
         android:enabled="true"
         android:icon="@drawable/growth"
-        android:title="@string/growth" />
+        android:title="@string/growth"
+        app:showAsAction="ifRoom" />
 </menu>
