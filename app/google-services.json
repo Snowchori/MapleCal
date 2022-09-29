@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "451825305586",
+    "project_id": "maplecal-2704d",
+    "storage_bucket": "maplecal-2704d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:451825305586:android:52adf5027da296633c0d6b",
+        "android_client_info": {
+          "package_name": "com.example.maplecal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "451825305586-h3jd1e61e43qh71nsabbmu6lv6rnpoki.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.maplecal",
+            "certificate_hash": "8abab9d0c5772712b88924caf35007188c7a3cb4"
+          }
+        },
+        {
+          "client_id": "451825305586-o08f1q7hhiqglk34f3u72d4dqng5ou31.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkTtr1GLE8Nfg7BcsZ5mPKHiFgKB2cU1c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "451825305586-o08f1q7hhiqglk34f3u72d4dqng5ou31.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
