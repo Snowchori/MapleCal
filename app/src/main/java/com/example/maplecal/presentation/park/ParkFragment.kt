@@ -57,12 +57,19 @@ class ParkFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
 
     private fun initParkCheckBox() {
         binding.parkSun.setOnCheckedChangeListener(this)
+        binding.parkSun.isChecked = parkViewModel.getParkChecked("sunday")
         binding.parkMon.setOnCheckedChangeListener(this)
+        binding.parkMon.isChecked = parkViewModel.getParkChecked("monday")
         binding.parkTue.setOnCheckedChangeListener(this)
+        binding.parkTue.isChecked = parkViewModel.getParkChecked("tuesday")
         binding.parkWed.setOnCheckedChangeListener(this)
+        binding.parkWed.isChecked = parkViewModel.getParkChecked("wednesday")
         binding.parkThu.setOnCheckedChangeListener(this)
+        binding.parkThu.isChecked = parkViewModel.getParkChecked("thursday")
         binding.parkFri.setOnCheckedChangeListener(this)
+        binding.parkFri.isChecked = parkViewModel.getParkChecked("friday")
         binding.parkSat.setOnCheckedChangeListener(this)
+        binding.parkSat.isChecked = parkViewModel.getParkChecked("saturday")
     }
 
     override fun onCheckedChanged(checkbox: CompoundButton, isChecked: Boolean) {

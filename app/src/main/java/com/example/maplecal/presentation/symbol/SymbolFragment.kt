@@ -57,13 +57,21 @@ class SymbolFragment : Fragment(), CompoundButton.OnCheckedChangeListener {
 
     private fun initSymbolCheckBox() {
         binding.symbolLongways.setOnCheckedChangeListener(this)
+        binding.symbolLongways.isChecked = symbolViewModel.getSymbolCheked("longways")
         binding.symbolChuchu.setOnCheckedChangeListener(this)
+        binding.symbolChuchu.isChecked = symbolViewModel.getSymbolCheked("chuchu")
         binding.symbolLehlne.setOnCheckedChangeListener(this)
+        binding.symbolLehlne.isChecked = symbolViewModel.getSymbolCheked("lehlne")
         binding.symbolArcana.setOnCheckedChangeListener(this)
+        binding.symbolArcana.isChecked = symbolViewModel.getSymbolCheked("arcana")
         binding.symbolMoras.setOnCheckedChangeListener(this)
+        binding.symbolMoras.isChecked = symbolViewModel.getSymbolCheked("moras")
         binding.symbolEspa.setOnCheckedChangeListener(this)
+        binding.symbolEspa.isChecked = symbolViewModel.getSymbolCheked("espa")
         binding.symbolCernium.setOnCheckedChangeListener(this)
+        binding.symbolCernium.isChecked = symbolViewModel.getSymbolCheked("cernium")
         binding.symbolArx.setOnCheckedChangeListener(this)
+        binding.symbolArx.isChecked = symbolViewModel.getSymbolCheked("arx")
     }
 
     override fun onCheckedChanged(checkBox: CompoundButton, isChecked: Boolean) {

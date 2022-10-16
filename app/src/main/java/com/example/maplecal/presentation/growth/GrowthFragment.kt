@@ -37,11 +37,11 @@ class GrowthFragment : Fragment() {
 
     private fun initButton() {
         binding.calButton.setOnClickListener {
-            growthViewModel.calculateExp()
+            growthViewModel.calculateExp(childFragmentManager)
         }
 
         binding.searchButton.setOnClickListener {
-            growthViewModel.searchExpLevel()
+            growthViewModel.searchExpLevel(childFragmentManager)
         }
     }
 

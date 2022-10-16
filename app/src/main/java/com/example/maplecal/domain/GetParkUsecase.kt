@@ -18,4 +18,8 @@ class GetParkUseCase @Inject constructor(
 
         return parkList
     }
+
+    fun getParkChecked(index: Int): Boolean {
+        return parkRepository.getParkChecked(index)
+    }
 }
