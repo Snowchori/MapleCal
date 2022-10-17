@@ -22,17 +22,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    signingConfigs {
-        release {
-            storeFile file("maplecal_key.jks")
-
-            storePassword "gkscjf56"
-
-            keyAlias "maplecal_key"
-
-            keyPassword "gkscjf56"
-        }
-    }
 
     buildTypes {
 
@@ -49,7 +38,6 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             manifestPlaceholders = [enableCrashReporting:"true"]
-            signingConfig signingConfigs.release
             firebaseCrashlytics {
                 mappingFileUploadEnabled true
             }
