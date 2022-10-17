@@ -1,5 +1,6 @@
 package com.example.maplecal.data.remote
 
+import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.withContext
@@ -56,7 +57,8 @@ class ExpRemoteDataSource @Inject constructor(
                 level = td[levelIndex].text().replace("Lv.", "")
                 val result = getRequestExp(level.toInt())
                 val expUp = td[expIndex].text().replace(",", "").toLong()
-                exp = expUp * 100 / result.toDouble()
+                if (result != 0.0.toLong())
+                    exp = expUp * 100 / result.toDouble()
             }
         }
 

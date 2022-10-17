@@ -88,4 +88,8 @@ class GetSymbolUseCase @Inject constructor(
 
         return symbolList
     }
+
+    fun getSymbolChecked(index: Int): Boolean {
+        return symbolRepository.getSymbolChecked(index)
+    }
 }

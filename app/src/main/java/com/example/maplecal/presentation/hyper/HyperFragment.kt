@@ -35,6 +35,7 @@ class HyperFragment : Fragment() {
         hyperViewModel.levelLiveData.observe(viewLifecycleOwner) {
             hyperViewModel.getRemainPoint(it)
         }
+        binding.levelEdit.setText(hyperViewModel.levelLiveData.toString())
         binding.lifecycleOwner = this
         binding.viewModel = hyperViewModel
     }

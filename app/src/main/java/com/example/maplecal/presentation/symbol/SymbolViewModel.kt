@@ -45,6 +45,24 @@ class SymbolViewModel @Inject constructor(
         updateSymbols()
     }
 
+    fun getSymbolCheked(name: String): Boolean {
+        val index = when (name) {
+            "longways" -> 0
+            "chuchu" -> 1
+            "lehlne" -> 2
+            "arcana" -> 3
+            "moras" -> 4
+            "espa" -> 5
+            "cernium" -> 6
+            "arx" -> 7
+            else -> -1
+        }
+        return if (index == -1)
+            false
+        else
+            getSymbolUseCase.getSymbolChecked(index)
+    }
+
     fun getSymbolResult(): MutableList<SymbolResult> {
         val symbolLists = getSymbolUseCase.getSymbols()
         val symbolResultList = mutableListOf<SymbolResult>()

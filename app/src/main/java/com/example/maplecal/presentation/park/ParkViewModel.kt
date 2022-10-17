@@ -38,6 +38,23 @@ class ParkViewModel @Inject constructor(
         updateParks()
     }
 
+    fun getParkChecked(name: String): Boolean {
+        val index = when (name) {
+            "sunday" -> 0
+            "monday" -> 1
+            "tuesday" -> 2
+            "wednesday" -> 3
+            "thursday" -> 4
+            "friday" -> 5
+            "saturday" -> 6
+            else -> -1
+        }
+        return if (index == -1)
+            false
+        else
+            getParkUseCase.getParkChecked(index)
+    }
+
     fun getParkResult(): MutableList<ParkResult> {
         val parkLists = getParkUseCase.getParks()
         val parkResultList = mutableListOf<ParkResult>()

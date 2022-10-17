@@ -1,8 +1,10 @@
 package com.example.maplecal.presentation.growth
 
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.maplecal.LoadingDialog
 import com.example.maplecal.domain.GetGrowthUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -36,8 +38,10 @@ class GrowthViewModel @Inject constructor(
         resultLiveData.value = "0"
     }
 
-    fun calculateExp() {
+    fun calculateExp(fragmentManager: FragmentManager) {
         viewModelScope.launch {
+            val dialog = LoadingDialog()
+            dialog.show(fragmentManager, "LoadingDialog")
             try {
                 val data = mutableListOf<Int>()
                 extremeLiveData.value?.let { data.add(it.toInt()) }
@@ -57,16 +61,20 @@ class GrowthViewModel @Inject constructor(
             } catch (e: NumberFormatException) {
                 resultLiveData.value = "입력값 오류"
             }
+            dialog.dismiss()
         }
     }
 
-    fun searchExpLevel() {
+    fun searchExpLevel(fragmentManager: FragmentManager) {
         viewModelScope.launch {
+            val dialog = LoadingDialog()
+            dialog.show(fragmentManager, "LoadingDialog")
             val expLevel = nicknameLiveData.value?.let { getGrowthUseCase.getExpLevel(it) }
             if (expLevel != null) {
-                levelLiveData.value = expLevel.first
+                levelLiveData.value = expLevel.first!!
                 expLiveData.value = String.format("%.3f", expLevel.second)
             }
+            dialog.dismiss()
         }
     }
 }

@@ -20,7 +20,9 @@ class HyperViewModel @Inject constructor(
     val hyperLiveData: LiveData<List<Hyper>>
         get() = _hyperLiveData
 
-    var levelLiveData = MutableLiveData<String>()
+    var _levelLiveData = MutableLiveData<String>()
+    val levelLiveData: LiveData<String>
+        get() = _levelLiveData
 
     var _remainPointLiveData = MutableLiveData<String>()
     val remainPointLiveData: LiveData<String>
@@ -31,12 +33,12 @@ class HyperViewModel @Inject constructor(
         get() = _resultTextLiveData
 
     init {
-        levelLiveData.value = "0"
+        _levelLiveData.value = "0"
         _remainPointLiveData.value = "0"
         _resultTextLiveData.value = ""
     }
 
-    fun updateHypers() {
+    private fun updateHypers() {
         _hyperLiveData.value = getHypers()
     }
 
@@ -78,6 +80,6 @@ class HyperViewModel @Inject constructor(
             }
         }
         _resultTextLiveData.value = hyperText.toString()
-        levelLiveData.value?.let { getRemainPoint(it) }
+        _levelLiveData.value?.let { getRemainPoint(it) }
     }
 }
