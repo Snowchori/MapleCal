@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.maplecal">
+    package="com.chori.maplecal">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:name=".MapleCalApplication"
+        android:name="com.chori.maplecal.MapleCalApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -20,7 +20,7 @@
             android:name="firebase_crashlytics_collection_enabled"
             android:value="${enableCrashReporting}"/>
 
-        <activity android:name=".MainActivity" android:windowSoftInputMode="adjustPan"
+        <activity android:name="com.chori.maplecal.MainActivity" android:windowSoftInputMode="adjustPan"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

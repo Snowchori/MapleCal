@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.maplecal.presentation.growth.GrowthViewModel" />
+            type="com.chori.maplecal.presentation.growth.GrowthViewModel" />
     </data>
 
     <FrameLayout
