@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.maplecal.presentation.growth.GrowthViewModel" />
+            type="com.chori.maplecal.presentation.growth.GrowthViewModel" />
     </data>
 
     <FrameLayout
@@ -33,7 +33,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp">
+                    android:padding="20dp">
 
                     <EditText
                         android:id="@+id/nickname"

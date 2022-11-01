@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.maplecal.presentation.hyper.HyperViewModel" />
+            type="com.chori.maplecal.presentation.hyper.HyperViewModel" />
     </data>
 
     <FrameLayout
