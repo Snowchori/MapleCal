@@ -37,9 +37,9 @@
 
 ## Screen shot
 <p align="center">
-        <img src="./screenshot/MapleCal_1.png" alt="MapleCal_1.png"><br><br>
-        <img src="./screenshot/MapleCal_2.png" alt="MapleCal_2.png"><br><br>
-        <img src="./screenshot/MapleCal_3.png" alt="MapleCal_3.png"><br><br>
+        <img src="./screenshot/MapleCal_1.png" alt="MapleCal_1.png">
+        <img src="./screenshot/MapleCal_2.png" alt="MapleCal_2.png">
+        <img src="./screenshot/MapleCal_3.png" alt="MapleCal_3.png">
         <img src="./screenshot/MapleCal_4.png" alt="MapleCal_4.png"><br>
 </p>
 
